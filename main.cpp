@@ -11,7 +11,7 @@ int main() {
     StringReverser sr{};
     MySerialServer mss{};
     MyTestClientHandler ch{&sr};
-    mss.open(8080, &ch);
+    mss.open(5600, &ch);
     std::this_thread::sleep_for(std::chrono::milliseconds(200000));
 
     return 0;

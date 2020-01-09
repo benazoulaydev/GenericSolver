@@ -9,16 +9,16 @@
 #include <algorithm>
 #include "MyTestClientHandler.h"
 
-void MyTestClientHandler::handleClient(int inputStream, int outputStream) {
+void MyTestClientHandler::handleClient(int socketFD, int outputStream) {
     //TODO add CacheManager feature
     while(true){
         char buffer[4096] = {0};
         bzero(buffer, 4096);
-        int n = read(inputStream , buffer, 4096);
+        int n = read(socketFD , buffer, 4096);
         std::string strInput(buffer), strEnd("end");
         strInput.erase(std::remove_if(strInput.begin(), strInput.end(), ::isspace), strInput.end());
         if(strInput.compare(strEnd) == 0){
-            close(inputStream);
+            close(socketFD);
             return;
         }
         std::string s = solver->solve(strInput);

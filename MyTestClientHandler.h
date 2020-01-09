@@ -19,7 +19,7 @@ public:
         solver = pSolver;
     }
 
-    void handleClient(int inputStream, int outputStream) override;
+    void handleClient(int socketFD, int outputStream) override;
 
 };
 
