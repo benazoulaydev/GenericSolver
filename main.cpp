@@ -4,15 +4,28 @@
 #include "MySerialServer.h"
 #include "MyTestClientHandler.h"
 #include "StringReverser.h"
+#include "MatrixMaze.h"
+#include "Solution.h"
+#include "SearcherInterface.h"
+#include "BestFirstSearch.h"
+
+using namespace std;
 
 int main() {
     std::string p = "kfir_y";
     std::cout << p << std::endl;
-    StringReverser sr{};
-    MySerialServer mss{};
-    MyTestClientHandler ch{&sr};
-    mss.open(5600, &ch);
-    std::this_thread::sleep_for(std::chrono::milliseconds(200000));
+
+    SearcherInterface<pair<int,int>>* searcher = new BestFirstSearch<pair<int,int>>();
+    Solution<pair<int,int>>* s = searcher->Search(new MatrixMaze());
+    for(const auto p : *(s->getPath())){
+        cout<<"("<<p.first<<","<<p.second<<"("<<endl;
+    }
+    ;
+    //    StringReverser sr{};
+//    MySerialServer mss{};
+//    MyTestClientHandler ch{&sr};
+//    mss.open(5600, &ch);
+//    std::this_thread::sleep_for(std::chrono::milliseconds(200000));
 
     return 0;
 }

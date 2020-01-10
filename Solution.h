@@ -11,15 +11,18 @@
 template <typename T>
 class Solution{
 private:
-    std::vector<State<T>>* path;
+    std::vector<T>* path;
 public:
     Solution(){
-        this->path = new std::vector<State<T>>;
+        this->path = new std::vector<T>;
     }
-    void addState(State<T> state){
+    void addState(T state){
         path->emplace_back(state);
     }
-    std::vector<State<T>>* getPath(){
+    void addStateFront(T state){
+        path->insert(path->begin(), state);// emplace_back(state);
+    }
+    std::vector<T>* getPath(){
         return path;
     }
 };

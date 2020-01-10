@@ -20,7 +20,7 @@ private:
 
 public:
     State<pair<int,int>>* getInitState() override {
-        return makeState(0,0, nullptr, maze[0][0]);
+        return makeState(0,0, make_pair(-1,-1), maze[0][0]);
     }
 
     vector<State<pair<int,int>>*>* getAllPossibleStates(State<pair<int,int>>* s) override {
@@ -28,26 +28,26 @@ public:
         int i = s->getState().first, j = s->getState().second;
         //check bounds
         if(j!=0) // left
-            states->emplace_back(makeState(i,j-1,s, maze[i][j-1]));
+            states->emplace_back(makeState(i,j-1,s->getState(), maze[i][j-1]));
         if(i!=0) // up
-            states->emplace_back(makeState(i-1,j,s, maze[i-1][j]));
+            states->emplace_back(makeState(i-1,j,s->getState(), maze[i-1][j]));
         if(j!=size-1) // right
-            states->emplace_back(makeState(i,j+1,s, maze[i][j+1]));
+            states->emplace_back(makeState(i,j+1,s->getState(), maze[i][j+1]));
         if(i!=size-1) // down
-            states->emplace_back(makeState(i+1,j,s, maze[i+1][j]));
+            states->emplace_back(makeState(i+1,j,s->getState(), maze[i+1][j]));
         return states;
     }
 
     bool isGoalState(State<pair<int,int>>* s) override {
         if(goal == nullptr){
-            this->goal = makeState(size-1,size-1, nullptr, maze[size-1][size-1]);
+            this->goal = makeState(size-1,size-1, make_pair(size,size), maze[size-1][size-1]);
         }
-        return *goal==*s;
+        return goal==s;
     }
-    State<pair<int,int>>* makeState(int i, int j, State<pair<int, int>>* cameFrom, double cost);
+    State<pair<int,int>>* makeState(int i, int j, pair<int,int> cameFrom, double cost);
 };
 
-State<pair<int, int>> *MatrixMaze::makeState(int i, int j, State<pair<int, int>>* cameFrom, double cost){
+State<pair<int, int>> *MatrixMaze::makeState(int i, int j, pair<int,int> cameFrom, double cost){
     return new State<pair<int,int>>(make_pair(i,j), cameFrom, cost);
 }
 

@@ -9,19 +9,38 @@ template <typename T>
 class State {
 private:
     T state;
-    State* cameFrom;
+    T cameFrom;
     double cost;
 public:
-    State(T s, State* cameF, double c){
+    State(T s, T cameF, double c){
         this->state = s;
         this->cameFrom = cameF;
         this->cost = c;
     }
-    friend bool operator==(const State &lhs, const State &rhs) {
-        return (lhs.w == rhs.w);
+
+    T getCameFrom() const {
+        return cameFrom;
     }
-    friend bool operator!=(const State &lhs, const State &rhs) {
-        return !(lhs == rhs);
+
+    double getCost() const {
+        return cost;
+    }
+    bool operator==(const State *rhs)const {
+        return (this->getState() == rhs->getState());
+    }
+    bool operator!=(const State *rhs) const{
+        return !(*this == *rhs);
+    }
+     bool operator<(const State *rhs)const{
+        return this->cost < rhs->cost;
+    }
+
+    void setCameFrom(T from) {
+        State::cameFrom = from;
+    }
+
+    void setCost(double c) {
+        State::cost = c;
     }
 
     T getState() const {
