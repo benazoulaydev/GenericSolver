@@ -16,7 +16,7 @@ template <typename T>
 class Searcher : public SearcherInterface<T>{
 private:
     set<State<T>*>* openList;
-    unordered_map<T, State<T>*>* openListMap;
+    map<T, State<T>*>* openListMap;
     int evaluatedNodes;
 public:
     Searcher(){

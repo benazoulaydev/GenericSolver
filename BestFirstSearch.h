@@ -12,7 +12,7 @@
 template <typename T>
 class BestFirstSearch : public Searcher<T>{
 private:
-    unordered_map<T, State<T>*>* closed;
+    map<T, State<T>*>* closed;
     Solution<T> *backTrace(State<T>* goalState);
 public:
     Solution<T>* Search(Searchable<T>* searchable) override;
@@ -21,22 +21,22 @@ public:
 template<typename T>
 Solution<T> *BestFirstSearch<T>::Search(Searchable<T>* searchable) {
     Searcher<T>::addToOpenList(searchable->getInitState());
-    closed = new unordered_map<T, State<T>*>();
+    closed = new map<T, State<T>*>();
     while(Searcher<T>::openListSize() > 0){
         State<T>* n = this->popOpenList();
         closed->emplace(n->getState(), n);
-        if(n == searchable->isGoalState()){
-            return backTrace(); // find the best path from the openList;
+        if(searchable->isGoalState(n)){
+            return backTrace(n); // find the best path from the openList;
         }
         auto succerssors = searchable->getAllPossibleStates(n);
-        for(const State<T>* s : succerssors){
-            if(closed->find(s->getState()) == closed->end() && !openContains(s->getState())){
-                addToOpenList(s);
+        for(State<T>* s : *succerssors){
+            if(closed->find(s->getState()) == closed->end() && !Searcher<T>::openContains(s->getState())){
+                Searcher<T>::addToOpenList(s);
             } else {
-                if(openContains(s->getState())){
+                if(Searcher<T>::openContains(s->getState())){
                     double newCost = s->getCost() + n->getCost();
-                    if(newCost < costToState(s->getState())){
-                        updateState(s->getState(), n->getState(), newCost);
+                    if(newCost < Searcher<T>::costToState(s->getState())){
+                        Searcher<T>::updateState(s->getState(), n->getState(), newCost);
                     }
                 }
             }
