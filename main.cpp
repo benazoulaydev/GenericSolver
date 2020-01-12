@@ -16,10 +16,12 @@ int main() {
 //    std::cout << p << std::endl;
 
     SearcherInterface<Cell>* searcher = new BestFirstSearch<Cell>();
+//    auto mm = new MatrixMaze();
+
     Solution<Cell>* s = searcher->Search(new MatrixMaze());
-//    for(const auto p : *(s->getPath())){
-//        cout<<"("<<p.first<<","<<p.second<<")"<<endl;
-//    }
+    for(const auto p : *(s->getPath())){
+        cout<<"("<<p.getI()<<","<<p.getJ()<<")";
+    }
 //
 //    StringReverser sr{};
 //    MySerialServer mss{};

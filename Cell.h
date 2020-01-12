@@ -15,22 +15,26 @@ private:
 public:
     int i, j;
     Cell(){
-        i=0;
-        j=0;
+        i=99999;
+        j=99999;
     }
     Cell(int i1,int j1){
         i = i1;
         j = j1;
     }
     bool operator==(const Cell &other) const {
-        return (this->i == other.i) && (this->j == other.j);
+//        cout<<this->i<<","<<this->j<<" "<<other.i<<other.j<<endl;
+        return ((this->i == other.i) && (this->j == other.j));
     }
-    bool operator==(const Cell *other)const {
-        return (this->i == other->i) && (this->j == other->j);
+    bool operator!=(const Cell &other) const{
+        return !(*this == other);
     }
-    bool operator!=(const Cell *other) const{
-        return !(*this == *other);
-    }
+//    bool operator==(const Cell *other)const {
+//        return (this->i == other->i) && (this->j == other->j);
+//    }
+//    bool operator!=(const Cell *other) const{
+//        return !(*this == *other);
+//    }
     int getI() const {
         return i;
     }

@@ -12,8 +12,8 @@
 template <typename T>
 class BestFirstSearch : public Searcher<T>{
 private:
-    unordered_map<T, State<T>*>* closed;
-    Solution<T> *backTrace(State<T>* goalState);
+    unordered_map<T, State<T>>* closed;
+    Solution<T> *backTrace(const State<T>* goalState, State<T> *init);
 public:
     Solution<T>* Search(Searchable<T>* searchable) override;
 };
@@ -21,20 +21,29 @@ public:
 template<typename T>
 Solution<T> *BestFirstSearch<T>::Search(Searchable<T>* searchable) {
     Searcher<T>::addToOpenList(searchable->getInitState());
-    closed = new unordered_map<T, State<T>*>();
+    closed = new unordered_map<T, State<T>>();
     while(Searcher<T>::openListSize() > 0){
-        State<T>* n = this->popOpenList();
-        closed->emplace(n->getState(), n);
+        const State<T>* n = this->popOpenList();
+        closed->emplace(n->getState(), *n);
+        for (auto i : *closed){
+            cout << i.second.getState().getI()<<i.second.getState().getJ()<<"-"<<i.second.getCost()<<" ";
+        }
+        cout<<"closed"<< endl;
+
         if(searchable->isGoalState(n)){
-            return backTrace(n); // find the best path from the openList;
+            return backTrace(n,searchable->getInitState()); // find the best path from the openList;
         }
         auto succerssors = searchable->getAllPossibleStates(n);
         for(State<T>* s : *succerssors){
+            cout<<"new cost-"<<s->getState().getI()<<","<<s->getState().getJ()<<" "<<
+                s->getCost()<<"+"<<n->getState().getI()<<","<<n->getState().getJ()<<" "<<n->getCost()<<endl;
+            s->setCost(s->getCost()+n->getCost());
             if(closed->find(s->getState()) == closed->end() && !Searcher<T>::openContains(s->getState())){
                 Searcher<T>::addToOpenList(s);
             } else {
                 if(Searcher<T>::openContains(s->getState())){
-                    double newCost = s->getCost() + n->getCost();
+                    double newCost = s->getCost();
+                    cout<<s->getCost()<<" "<<Searcher<T>::costToState(s->getState())<<endl;
                     if(newCost < Searcher<T>::costToState(s->getState())){
                         Searcher<T>::updateState(s->getState(), n->getState(), newCost);
                     }
@@ -42,17 +51,17 @@ Solution<T> *BestFirstSearch<T>::Search(Searchable<T>* searchable) {
             }
         }
     }
-    cout<<"bestFS did not work"<<Searcher<T>::getNumberOfNodeEvaluated()<<endl;
+    cout<<"bestFS did not work "<<Searcher<T>::getNumberOfNodeEvaluated()<<endl;
 }
 
 template<typename T>
-Solution<T> *BestFirstSearch<T>::backTrace(State<T>*goalState) {
+Solution<T> *BestFirstSearch<T>::backTrace(const State<T> *goalState, State<T> *init) {
     Solution<T>* solution = new Solution<T>();
-    State<T>* tempState;
+    const State<T>* tempState;
     tempState = goalState;
-    while(tempState != nullptr){
+    while(tempState->getState() != init->getState()){
         solution->addStateFront(tempState->getState());
-        tempState = closed->at(tempState->getCameFrom());
+        tempState = &closed->at(tempState->getCameFrom());
     }
     return solution;
 }

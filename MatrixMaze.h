@@ -13,17 +13,18 @@ using namespace std;
 
 class MatrixMaze : public Searchable<Cell>{
 private:
-    double maze[2][2] = {{1,1},
-                        {2,2}};
+    double maze[3][3] = {{1,2,3},
+                        {4,5,6},
+                         {7,8,0}};
     State<Cell>* goal = nullptr;
-    int size = 2;
+    int size = 3;
 
 public:
     State<Cell>* getInitState() override {
         return makeState(0,0, -1,-1, maze[0][0]);
     }
 
-    vector<State<Cell>*>* getAllPossibleStates(State<Cell>* s) override {
+    vector<State<Cell>*>* getAllPossibleStates(const State<Cell>* s) override {
         auto states = new vector<State<Cell>*>;
         int i = s->getState().getI(), j = s->getState().getJ();
         //check bounds
@@ -35,15 +36,20 @@ public:
             states->emplace_back(makeState(i,j+1,i,j, maze[i][j+1]));
         if(i!=size-1) // down
             states->emplace_back(makeState(i+1,j,i,j, maze[i+1][j]));
+        for(auto v: *states){
+            cout<<i<<","<<j<<"-"<<v->getState().getI()<<","<<v->getState().getI();
+        }cout<<endl;
         return states;
     }
 
-    bool isGoalState(State<Cell>* s) override {
+    bool isGoalState(const State<Cell>* s) override {
         if(goal == nullptr){
             this->goal = makeState(size-1,size-1, size,size, maze[size-1][size-1]);
         }
-        bool l = goal==s;
-        cout<<s->getState().getI()<<s->getState().getJ()<<endl;
+        bool l = goal->getState() == s->getState();
+        int x;
+        l? x=1:x=2;
+//        cout<<x<<s->getState().getI()<<s->getState().getJ()<<endl;
         return l;
     }
     State<Cell>* makeState(int i, int j, int cameI, int cameJ, double cost);
