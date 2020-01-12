@@ -14,18 +14,18 @@ using namespace std;
 int main() {
 //    std::string p = "kfir_y";
 //    std::cout << p << std::endl;
-
-    SearcherInterface<Cell>* searcher = new BestFirstSearch<Cell>();
-    Solution<Cell>* s = searcher->Search(new MatrixMaze());
+//
+//    SearcherInterface<Cell>* searcher = new BestFirstSearch<Cell>();
+//    Solution<Cell>* s = searcher->Search(new MatrixMaze());
 //    for(const auto p : *(s->getPath())){
 //        cout<<"("<<p.first<<","<<p.second<<")"<<endl;
 //    }
 //
-//    StringReverser sr{};
-//    MySerialServer mss{};
-//    MyTestClientHandler ch{&sr};
-//    mss.open(5600, &ch);
-//    std::this_thread::sleep_for(std::chrono::milliseconds(200000));
+    StringReverser sr{};
+    MySerialServer mss{};
+    MyTestClientHandler ch{&sr};
+    mss.open(5600, &ch);
+    std::this_thread::sleep_for(std::chrono::milliseconds(200000));
 
     return 0;
 }
