@@ -11,7 +11,7 @@
 template <typename T>
 class Searchable {
 public:
-    virtual State<std::pair<int, int>> * getInitState()=0;
+    virtual State<T> * getInitState()=0;
     virtual std::vector<State<T>*>* getAllPossibleStates(State<T>* s)=0;
     virtual bool isGoalState(State<T>* s)=0;
 };

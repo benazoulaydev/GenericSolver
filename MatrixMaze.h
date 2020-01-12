@@ -7,48 +7,52 @@
 
 
 #include "Searchable.h"
+#include "Cell.h"
 #include <utility>
 using namespace std;
 
-class MatrixMaze : public Searchable<pair<int,int>>{
+class MatrixMaze : public Searchable<Cell>{
 private:
-    double maze[3][3] = {{1,1,1},
-                      {2,2,1},
-                      {3,3,1}};
-    State<pair<int,int>>* goal = nullptr;
-    int size = 3;
+    double maze[2][2] = {{1,1},
+                        {2,2}};
+    State<Cell>* goal = nullptr;
+    int size = 2;
 
 public:
-    State<pair<int,int>>* getInitState() override {
-        return makeState(0,0, make_pair(-1,-1), maze[0][0]);
+    State<Cell>* getInitState() override {
+        return makeState(0,0, -1,-1, maze[0][0]);
     }
 
-    vector<State<pair<int,int>>*>* getAllPossibleStates(State<pair<int,int>>* s) override {
-        auto states = new vector<State<pair<int,int>>*>;
-        int i = s->getState().first, j = s->getState().second;
+    vector<State<Cell>*>* getAllPossibleStates(State<Cell>* s) override {
+        auto states = new vector<State<Cell>*>;
+        int i = s->getState().getI(), j = s->getState().getJ();
         //check bounds
         if(j!=0) // left
-            states->emplace_back(makeState(i,j-1,s->getState(), maze[i][j-1]));
+            states->emplace_back(makeState(i,j-1,i,j, maze[i][j-1]));
         if(i!=0) // up
-            states->emplace_back(makeState(i-1,j,s->getState(), maze[i-1][j]));
+            states->emplace_back(makeState(i-1,j,i,j, maze[i-1][j]));
         if(j!=size-1) // right
-            states->emplace_back(makeState(i,j+1,s->getState(), maze[i][j+1]));
+            states->emplace_back(makeState(i,j+1,i,j, maze[i][j+1]));
         if(i!=size-1) // down
-            states->emplace_back(makeState(i+1,j,s->getState(), maze[i+1][j]));
+            states->emplace_back(makeState(i+1,j,i,j, maze[i+1][j]));
         return states;
     }
 
-    bool isGoalState(State<pair<int,int>>* s) override {
+    bool isGoalState(State<Cell>* s) override {
         if(goal == nullptr){
-            this->goal = makeState(size-1,size-1, make_pair(size,size), maze[size-1][size-1]);
+            this->goal = makeState(size-1,size-1, size,size, maze[size-1][size-1]);
         }
-        return goal==s;
+        bool l = goal==s;
+        cout<<s->getState().getI()<<s->getState().getJ()<<endl;
+        return l;
     }
-    State<pair<int,int>>* makeState(int i, int j, pair<int,int> cameFrom, double cost);
+    State<Cell>* makeState(int i, int j, int cameI, int cameJ, double cost);
 };
 
-State<pair<int, int>> *MatrixMaze::makeState(int i, int j, pair<int,int> cameFrom, double cost){
-    return new State<pair<int,int>>(make_pair(i,j), cameFrom, cost);
+State<Cell> *MatrixMaze::makeState(int i, int j, int cameI, int cameJ, double cost){
+    auto c1 = new Cell(i,j);
+    auto c2 = new Cell(cameI,cameJ);
+    return new State<Cell>(*c1, *c2, cost);
 }
 
 

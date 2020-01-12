@@ -16,11 +16,12 @@ template <typename T>
 class Searcher : public SearcherInterface<T>{
 private:
     set<State<T>*>* openList;
-    map<T, State<T>*>* openListMap;
+    unordered_map<T, State<T>*>* openListMap;
     int evaluatedNodes;
 public:
     Searcher(){
         openList = new set<State<T>*>();
+        openListMap = new unordered_map<T, State<T>*>();
         evaluatedNodes=0;
     }
     void addToOpenList(State<T>* state){

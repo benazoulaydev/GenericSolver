@@ -12,7 +12,7 @@
 template <typename T>
 class BestFirstSearch : public Searcher<T>{
 private:
-    map<T, State<T>*>* closed;
+    unordered_map<T, State<T>*>* closed;
     Solution<T> *backTrace(State<T>* goalState);
 public:
     Solution<T>* Search(Searchable<T>* searchable) override;
@@ -21,7 +21,7 @@ public:
 template<typename T>
 Solution<T> *BestFirstSearch<T>::Search(Searchable<T>* searchable) {
     Searcher<T>::addToOpenList(searchable->getInitState());
-    closed = new map<T, State<T>*>();
+    closed = new unordered_map<T, State<T>*>();
     while(Searcher<T>::openListSize() > 0){
         State<T>* n = this->popOpenList();
         closed->emplace(n->getState(), n);
@@ -42,7 +42,7 @@ Solution<T> *BestFirstSearch<T>::Search(Searchable<T>* searchable) {
             }
         }
     }
-    cout<<"bestFS did not work"<<endl;
+    cout<<"bestFS did not work"<<Searcher<T>::getNumberOfNodeEvaluated()<<endl;
 }
 
 template<typename T>

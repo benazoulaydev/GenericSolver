@@ -12,16 +12,16 @@
 using namespace std;
 
 int main() {
-    std::string p = "kfir_y";
-    std::cout << p << std::endl;
+//    std::string p = "kfir_y";
+//    std::cout << p << std::endl;
 
-    SearcherInterface<pair<int,int>>* searcher = new BestFirstSearch<pair<int,int>>();
-    Solution<pair<int,int>>* s = searcher->Search(new MatrixMaze());
-    for(const auto p : *(s->getPath())){
-        cout<<"("<<p.first<<","<<p.second<<"("<<endl;
-    }
-    ;
-    //    StringReverser sr{};
+    SearcherInterface<Cell>* searcher = new BestFirstSearch<Cell>();
+    Solution<Cell>* s = searcher->Search(new MatrixMaze());
+//    for(const auto p : *(s->getPath())){
+//        cout<<"("<<p.first<<","<<p.second<<")"<<endl;
+//    }
+//
+//    StringReverser sr{};
 //    MySerialServer mss{};
 //    MyTestClientHandler ch{&sr};
 //    mss.open(5600, &ch);
