@@ -16,6 +16,7 @@ private:
     Solution<T> *backTrace(const State<T>* goalState, State<T> *init);
 public:
     Solution<T>* Search(Searchable<T>* searchable) override;
+    void printState(const State<T> *f,const State<T> *s);
 };
 
 template<typename T>
@@ -35,18 +36,30 @@ Solution<T> *BestFirstSearch<T>::Search(Searchable<T>* searchable) {
         }
         auto succerssors = searchable->getAllPossibleStates(n);
         for(State<T>* s : *succerssors){
-            cout<<"new cost-"<<s->getState().getI()<<","<<s->getState().getJ()<<" "<<
-                s->getCost()<<"+"<<n->getState().getI()<<","<<n->getState().getJ()<<" "<<n->getCost()<<endl;
+//            cout<<"new cost-"<<s->getState().getI()<<","<<s->getState().getJ()<<" "<<
+//                s->getCost()<<"+"<<n->getState().getI()<<","<<n->getState().getJ()<<" "<<n->getCost()<<endl;
+            printState(s,n);
             s->setCost(s->getCost()+n->getCost());
+            printState(s,n);
             if(closed->find(s->getState()) == closed->end() && !Searcher<T>::openContains(s->getState())){
                 Searcher<T>::addToOpenList(s);
             } else {
                 if(Searcher<T>::openContains(s->getState())){
                     double newCost = s->getCost();
-                    cout<<s->getCost()<<" "<<Searcher<T>::costToState(s->getState())<<endl;
+//                    cout<<s->getCost()<<" "<<Searcher<T>::costToState(s->getState())<<endl;
                     if(newCost < Searcher<T>::costToState(s->getState())){
                         Searcher<T>::updateState(s->getState(), n->getState(), newCost);
                     }
+                }else{
+                    Searcher<T>::addToOpenList(s);
+//                    double newCost = s->getCost();
+//                    auto sd = closed->at(s->getState());
+//                    if(newCost < sd.getCost()){
+////                        printState(s,&sd);
+////                        cout<<"hello"<<newCost <<"::"<< sd.getCost()<<endl;
+//                        sd.setCost(newCost);
+//                        sd.setCameFrom(n->getState());
+//                    }
                 }
             }
         }
@@ -65,5 +78,9 @@ Solution<T> *BestFirstSearch<T>::backTrace(const State<T> *goalState, State<T> *
     }
     return solution;
 }
-
+template<typename T>
+void BestFirstSearch<T>::printState(const State<T> *f,const State<T> *s){
+    cout<<"1:";f->getState().printS();cout<<"cost:"<<f->getCost()
+    <<";2:";s->getState().printS();cout<<"cost:"<<s->getCost()<<endl;
+}
 #endif //GENERICSOLVER_BESTFIRSTSEARCH_H

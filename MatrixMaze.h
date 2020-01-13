@@ -36,9 +36,6 @@ public:
             states->emplace_back(makeState(i,j+1,i,j, maze[i][j+1]));
         if(i!=size-1) // down
             states->emplace_back(makeState(i+1,j,i,j, maze[i+1][j]));
-        for(auto v: *states){
-            cout<<i<<","<<j<<"-"<<v->getState().getI()<<","<<v->getState().getI();
-        }cout<<endl;
         return states;
     }
 

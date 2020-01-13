@@ -22,6 +22,9 @@ public:
         i = i1;
         j = j1;
     }
+    void printS(){
+        cout<<"("<<i<<","<<j<<")";
+    }
     bool operator==(const Cell &other) const {
 //        cout<<this->i<<","<<this->j<<" "<<other.i<<other.j<<endl;
         return ((this->i == other.i) && (this->j == other.j));

@@ -56,10 +56,10 @@ public:
     }
 protected:
     const State<T>* popOpenList(){
-        for (auto s = openList->begin();
-             s != openList->end(); ++s)
-            cout<<s->getState().getI()<<s->getState().getJ()<<"-"<<s->getCost()<<" ";
-        cout<<"end"<<endl;
+//        for (auto s = openList->begin();
+//             s != openList->end(); ++s)
+//            cout<<s->getState().getI()<<s->getState().getJ()<<"-"<<s->getCost()<<" ";
+//        cout<<"end"<<endl;
         evaluatedNodes++;
         typename set<State<T>>::iterator top = openList->begin();
         openList->erase(top);
