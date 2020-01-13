@@ -5,7 +5,7 @@
 #include "StringReverser.h"
 #include <bits/stdc++.h>
 
-std::string StringReverser::solve(std::string p) {
-    reverse(p.begin(), p.end());
-    return p;
+std::string StringReverser::solve(std::string* p) {
+    reverse(p->begin(), p->end());
+    return *p;
 }

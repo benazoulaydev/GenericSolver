@@ -6,23 +6,24 @@
 #include "StringReverser.h"
 #include "MatrixMaze.h"
 #include "Solution.h"
-#include "SearcherInterface.h"
+#include "ISearcher.h"
 #include "BestFirstSearch.h"
-
+#include "SearchSolver.h"
+#include "BFS.h"
+#include "DFS.h"
+#include <queue>
 using namespace std;
 
 int main() {
-//    std::string p = "kfir_y";
-//    std::cout << p << std::endl;
-
-    SearcherInterface<Cell>* searcher = new BestFirstSearch<Cell>();
-//    auto mm = new MatrixMaze();
-
-    Solution<Cell>* s = searcher->Search(new MatrixMaze());
-    for(const auto p : *(s->getPath())){
+//    Solution<Cell> s = SearchSolver(new BestFirstSearch<Cell>()).solve(new MatrixMaze());
+    Solution<Cell> s = SearchSolver(new DFS<Cell>()).solve(new MatrixMaze());
+    for(const auto p : *s.getPath()){
         cout<<"("<<p.getI()<<","<<p.getJ()<<")";
     }
-//
+
+
+
+
 //    StringReverser sr{};
 //    MySerialServer mss{};
 //    MyTestClientHandler ch{&sr};

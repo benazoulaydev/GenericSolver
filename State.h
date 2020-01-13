@@ -26,10 +26,11 @@ public:
         return cost;
     }
     bool operator==(const State &rhs)const {
-        return (getState() == rhs.getState());
+        return getCost() == rhs.getCost();
+//                return (getState() == rhs.getState());
     }
     bool operator!=(const State &rhs) const{
-        return !(*this == *rhs);
+        return !(*this == rhs);
     }
     bool operator<(const State &rhs)const{
         return cost < rhs.cost;

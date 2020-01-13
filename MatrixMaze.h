@@ -14,8 +14,8 @@ using namespace std;
 class MatrixMaze : public Searchable<Cell>{
 private:
     double maze[3][3] = {{1,2,3},
-                        {4,5,10},
-                         {0,8,0}};
+                        {40,5,100},
+                         {0,800,0}};
     State<Cell>* goal = nullptr;
     int size = 3;
 

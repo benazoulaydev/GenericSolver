@@ -5,12 +5,12 @@
 #ifndef GENERICSOLVER_BESTFIRSTSEARCH_H
 #define GENERICSOLVER_BESTFIRSTSEARCH_H
 
-#include "SearcherInterface.h"
+#include "ISearcher.h"
 #include "Solution.h"
 #include <bits/stdc++.h>
 
 template <typename T>
-class BestFirstSearch : public SearcherInterface<T>{
+class BestFirstSearch : public ISearcher<T>{
 private:
     multiset<State<T>>* openList;
     unordered_map<T, State<T>>* openListMap;
@@ -36,7 +36,7 @@ public:
     int openListSize(){
         return openList->size();
     }
-    int getNumberOfNodeEvaluated(){
+    int getNumberOfNodeEvaluated() override {
         return evaluatedNodes;
     }
     void updateState(T state, T newCameFrom, double newCost){
@@ -67,15 +67,15 @@ Solution<T> *BestFirstSearch<T>::Search(Searchable<T>* searchable) {
         auto succerssors = searchable->getAllPossibleStates(n);
         for(State<T>* s : *succerssors){
             s->setCost(s->getCost()+n->getCost());
-            if(closed->find(s->getState()) == closed->end() && !openContains(s->getState())){
-                addToOpenList(s);
-            } else {
-                if(openContains(s->getState())){
-                    double newCost = s->getCost();
-                    if(newCost < costToState(s->getState()))
-                        updateState(s->getState(), n->getState(), newCost);
-                } else
+            if(closed->find(s->getState()) == closed->end()){
+                if(!openContains(s->getState())){
                     addToOpenList(s);
+                } else {
+                    double newCost = s->getCost();
+                    if(newCost < costToState(s->getState())){
+                        updateState(s->getState(), n->getState(), newCost);
+                    }
+                }
             }
         }
     }
@@ -91,6 +91,7 @@ Solution<T> *BestFirstSearch<T>::backTrace(const State<T> *goalState, State<T> *
         solution->addStateFront(tempState->getState());
         tempState = &closed->at(tempState->getCameFrom());
     }
+    solution->addStateFront(tempState->getState());
     return solution;
 }
 #endif //GENERICSOLVER_BESTFIRSTSEARCH_H
