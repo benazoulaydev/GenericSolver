@@ -15,7 +15,7 @@ template <typename T> class DFS  : public ISearcher<T>{
     unordered_map<T, pair<bool,State<T>*>> discovered;
     int evaluatedNodes;
 public:
-    Solution<T> *Search(Searchable<T> *s) override {
+    Solution<T> *search(Searchable<T> *s) override {
         vector<State<T> *> vec;
         vec.push_back(s->getInitState());
         stack<pair<State<T> *, vector<State<T> *>>> st;
@@ -24,6 +24,7 @@ public:
         while (!st.empty()) {
             auto vertex = st.top();
             st.pop();
+            evaluatedNodes++;
             if (visited.find((vertex.first)->getState()) == visited.end()) {
                 if (s->isGoalState(vertex.first)) {
                     return toSol(vertex.second);

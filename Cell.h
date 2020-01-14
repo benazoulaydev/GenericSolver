@@ -22,7 +22,7 @@ public:
         i = i1;
         j = j1;
     }
-    void printS(){
+    void printS()const{
         cout<<"("<<i<<","<<j<<")";
     }
     bool operator==(const Cell &other) const {

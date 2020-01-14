@@ -20,7 +20,7 @@ public:
         searcher = s;
     }
     Solution<Cell> solve(Searchable<Cell>* p) override {
-        return *searcher->Search(p);
+        return *searcher->search(p);
     }
 };
 

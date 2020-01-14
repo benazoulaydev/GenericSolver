@@ -15,7 +15,7 @@ class MatrixMaze : public Searchable<Cell>{
 private:
     double maze[3][3] = {{1,2,3},
                         {40,5,100},
-                         {0,800,0}};
+                         {0,8,10}};
     State<Cell>* goal = nullptr;
     int size = 3;
 

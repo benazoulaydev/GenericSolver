@@ -15,19 +15,23 @@ private:
     queue<State<T>> Q;
     unordered_map<T, pair<bool,State<T>*>> discovered;
     int evaluatedNodes;
+    bool fromStart = true;
+    State<T>* initState;
 public:
 
     int getNumberOfNodeEvaluated() override {
         return evaluatedNodes;
     }
-    Solution<T> *Search(Searchable<T> *s) override {
-        auto start = s->getInitState();
-        Q.push(*start);
+    Solution<T> *search(Searchable<T> *s) override {
+        if(fromStart)
+            initState = s->getInitState();
+        Q.push(*initState);
         while(!Q.empty()){
             State<T> v = Q.front();
             Q.pop();
+            evaluatedNodes++;
             if(s->isGoalState(&v))
-                return backTrace(&v,s->getInitState());
+                return backTrace(&v,initState);
             auto succerssors = s->getAllPossibleStates(&v);
             for(State<T>* w : *succerssors){
                 if(discovered.find(w->getState()) == discovered.end()){
@@ -52,6 +56,12 @@ public:
         }
         solution->addStateFront(tempState->getState());
         return solution;
+    }
+
+    int absDistance(Searchable<T> *s, State<T> &init){
+        fromStart = false;
+        initState = &init;
+        return search(s)->getPath()->size() - 1;
     }
 };
 

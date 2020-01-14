@@ -12,7 +12,7 @@
 template <typename T>
 class ISearcher {
 public:
-    virtual Solution<T>* Search(Searchable<T>* s)=0;
+    virtual Solution<T>* search(Searchable<T>* s)=0;
     virtual int getNumberOfNodeEvaluated()=0;
 };
 
