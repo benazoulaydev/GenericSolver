@@ -62,10 +62,6 @@ public:
             openSet.erase(current->getState());
             for (State<T>* neighbor : *s->getAllPossibleStates(current)){
                 T neighborState = neighbor->getState();
-//                neighborState.printS();
-//                cout<<evaluatedNodes<<endl;
-                if(evaluatedNodes >20)
-                    throw "failed";
                 // d(current,neighbor) is the weight of the edge from current to neighbor
                 // tentative_gScore is the distance from start to the neighbor through current
                 if(gScore.find(neighborState) == gScore.end())
