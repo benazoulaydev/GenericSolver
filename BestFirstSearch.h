@@ -51,11 +51,11 @@ public:
         openListMap->erase(top->getState());
         return &*top;
     }
-    Solution<T>* Search(Searchable<T>* searchable) override;
+    Solution<T>* search(Searchable<T>* searchable) override;
 };
 
 template<typename T>
-Solution<T> *BestFirstSearch<T>::Search(Searchable<T>* searchable) {
+Solution<T> *BestFirstSearch<T>::search(Searchable<T>* searchable) {
     addToOpenList(searchable->getInitState());
     closed = new unordered_map<T, State<T>>();
     while(openListSize() > 0){
