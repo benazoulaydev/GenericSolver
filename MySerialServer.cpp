@@ -32,11 +32,8 @@ int MySerialServer::start(int port, ClientHandler* c) {
     int addrlen = sizeof(address);
     char buffer[1024] = {0};
     char *hello = "Hello from server\n";
-    struct timeval      timeout;
-
-
-    fd_set              master_set, working_set;
-
+    struct timeval timeout;
+    fd_set master_set, working_set;
 
     // Creating socket file descriptor
     if ((server_fd = socket(AF_INET, SOCK_STREAM, 0)) == 0){

@@ -2,6 +2,7 @@
 #include <chrono>
 #include <thread>
 #include "MySerialServer.h"
+#include "MyParallelServer.h"
 #include "MyTestClientHandler.h"
 #include "StringReverser.h"
 #include "MatrixMaze.h"
@@ -22,10 +23,15 @@ int main() {
 //    }
 //
     StringReverser sr{};
-    MySerialServer mss{};
-    MyTestClientHandler ch{&sr};
-    mss.open(5600, &ch);
-    std::this_thread::sleep_for(std::chrono::milliseconds(200000));
+    //MyParallelServer mss{};
+//    MyTestClientHandler ch{&sr};
+//    mss.open(5600, &ch);
+    ClientHandler *testClientHandler = new MyTestClientHandler(&sr);
+    MyParallelServer server;
+    server.open(5610, testClientHandler);
+    server.stop();
+    delete(testClientHandler);
+    //std::this_thread::sleep_for(std::chrono::milliseconds(200000));
 
     return 0;
 }
