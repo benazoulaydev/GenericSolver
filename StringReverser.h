@@ -11,7 +11,7 @@
 
 class StringReverser : public Solver<std::string, std::string>{
 public:
-    std::string solve(std::string p) override;
+    std::string solve(std::string *p) override;
 };
 
 

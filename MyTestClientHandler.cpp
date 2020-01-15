@@ -35,7 +35,7 @@ void MyTestClientHandler::handleClient(int socketFD, int outputStream) {
             cout <<"Key doesn't exist"<<endl;
         }
 
-        std::string s = solver->solve(strInput);
+        std::string s = solver->solve(&strInput);
         const char *toSend = s.c_str();
         int isSent = send(outputStream, toSend, s.size(), 0);
         if (isSent == -1) {

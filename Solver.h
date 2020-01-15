@@ -8,7 +8,7 @@
 template <typename Problem, typename Sol>
 class Solver{
 public:
-    virtual Sol solve(Problem p) = 0;
+    virtual Sol solve(Problem* p) = 0;
 };
 
 
