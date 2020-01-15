@@ -16,12 +16,15 @@
 using namespace std;
 
 int main() {
-//    Solution<Cell> s = SearchSolver(new BestFirstSearch<Cell>()).solve(new MatrixMaze());
+    Solution<Cell> s = SearchSolver(new BestFirstSearch<Cell>()).solve(new MatrixMaze());
 //    Solution<Cell> s = SearchSolver(new DFS<Cell>()).solve(new MatrixMaze());
-    Solution<Cell> s = SearchSolver(new AStar<Cell>()).solve(new MatrixMaze());
     for(const auto p : *s.getPath()){
         cout<<"("<<p.getI()<<","<<p.getJ()<<")";
     }
+//    Solution<Cell> s2 = SearchSolver(new AStar<Cell>()).solve(new MatrixMaze());
+//    for(const auto p : *s2.getPath()){
+//        cout<<"("<<p.getI()<<","<<p.getJ()<<")";
+//    }
     cout<<endl;
 
 

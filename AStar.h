@@ -48,7 +48,15 @@ public:
         while(!openSet.empty()){
             //current := the node in openSet having the lowest fScore[] value
             State<T>* current = getCurrent();
+
             if (s->isGoalState(current)) {
+                double totalCost = 0;
+                T cur = current->getState();
+                while(cameFrom.find(cur) != cameFrom.end()) {
+                    totalCost+=s->cost(cur);
+                    cur = cameFrom[cur];
+                }
+                cout<<totalCost<<endl;
                 return reconstruct_path(current);
             }
 
@@ -86,19 +94,15 @@ public:
     //current := the node in openSet having the lowest fScore[] value
     State<T>* getCurrent(){
         State<T>* current = &openSet.begin()->second;
-//        current->getState().printS();
-//        cout<<evaluatedNodes<<endl;
         for(auto pair: openSet){
             if(fScore[pair.first] < fScore[current->getState()]) {
                 current = &pair.second;
             }
         }
-//        cout<<evaluatedNodes<<endl;
         return current;
     }
 
     Solution<T> *reconstruct_path (State<T>* goal){
-//        cout<<"enddddd"<<endl;
         T current = goal->getState();
         Solution<T>* total_path = new Solution<T>();
         while(cameFrom.find(current) != cameFrom.end()) {
