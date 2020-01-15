@@ -1,0 +1,14 @@
+//
+// Created by ben on 15/01/2020.
+//
+
+#ifndef GENERICSOLVER_MYPARALLELSERVER_H
+#define GENERICSOLVER_MYPARALLELSERVER_H
+
+
+class MyParallelServer {
+
+};
+
+
+#endif //GENERICSOLVER_MYPARALLELSERVER_H
