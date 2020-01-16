@@ -9,6 +9,7 @@
 
 class ClientHandler {
 public:
+    //TODO 1 param only
     virtual void handleClient(int inputStream, int outputStream) = 0;
 };
 
