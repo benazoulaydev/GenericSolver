@@ -29,7 +29,7 @@ public:
     State<Cell>* getInitState() override {
         return init;
     }
-    int cost(Cell state){
+    int cost(Cell state) override{
         return cost(state.getI(),state.getJ());
     }
     int cost(int i, int j){
@@ -65,9 +65,18 @@ public:
         return goal->getState() == s->getState();
     }
     double distanceFromGoal(State<Cell>* state){
-        double dx = (state->getState().getI()-(size-1));
-        double dy = (state->getState().getJ()-(size-1));
-        return sqrt(dx*dx+dy*dy);
+        int i = state->getState().getI(), j = state->getState().getJ();
+        if(j!=0 && cost(i,j-1) != -1 && cost(i,j-1)==0) // left
+            return 0;
+        if(i!=0 && cost(i-1,j) != -1 && cost(i-1,j)==0) // up
+            return 0;
+        if(j!=size-1 && cost(i,j+1) != -1 && cost(i,j+1)) // right
+            return 0;
+        if(i!=size-1 && cost(i+1,j) != -1 && cost(i+1,j)) // down
+            return 0;
+        double dx = (i-(size-1));
+        double dy = (j-(size-1));
+        return sqrt(dx*dx)+sqrt(dy*dy);
     }
 //    State<Cell>* getGoalState() override {
 //        return makeState(size-1,size-1, -1,-1, maze[0][0]);

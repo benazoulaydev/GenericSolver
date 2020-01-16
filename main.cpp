@@ -104,11 +104,18 @@ int main() {
 //    cout << "Time taken by function: "
 //         << duration.count() << " microseconds" << endl;
 
-    vector<int> m;
-    m.push_back(1);m.push_back(2);m.push_back(3);
-    m.push_back(1);m.push_back(2);m.push_back(3);
-    m.push_back(1);m.push_back(2);m.push_back(1);
-    string dd = SearchSolver(new BestFirstSearch<Cell>()).solve(new MatrixMaze(*new Cell(0,0),*new Cell(2,2), &m, 3));
+//    vector<int> m;
+    std::vector<int> m({ 0,1,1,1,1,1,1,1,1,1,
+                           0,2,2,2,2,2,2,2,2,1,
+                           0,0,0,0,0,0,0,0,2,1,
+                           1,2,3,3,3,3,3,0,2,1,
+                           1,0,0,0,0,0,0,0,2,1,
+                           1,0,3,4,4,4,4,3,2,1,
+                           1,0,3,3,3,3,3,3,2,1,
+                           1,0,0,0,0,0,0,0,0,1,
+                           1,2,2,2,2,2,2,2,0,0,
+                           1,1,1,1,1,1,1,1,1,0 });
+    string dd = SearchSolver(new AStar2<Cell>()).solve(new MatrixMaze(*new Cell(0,9),*new Cell(9,9), &m, 10));
     cout<<dd<<endl;
 //    Solution<Cell> s = SearchSolver(new BestFS<Cell>()).solve(new MatrixMaze());
 //    Solution<Cell> s = SearchSolver(new DFS<Cell>()).solve(new MatrixMaze());
@@ -141,16 +148,16 @@ int main() {
 //    //std::this_thread::sleep_for(std::chrono::milliseconds(200000));
 
 
-    StringReverser sr{};
-    //MyParallelServer mss{};
-//    MyTestClientHandler ch{&sr};
-//    mss.open(5600, &ch);
-    ClientHandler *testClientHandler = new MatrixClientHandler(&sr);
-    MyParallelServer server;
-    server.open(5611, testClientHandler);
-    server.stop();
-    delete(testClientHandler);
-    //std::this_thread::sleep_for(std::chrono::milliseconds(200000));
+//    StringReverser sr{};
+//    //MyParallelServer mss{};
+////    MyTestClientHandler ch{&sr};
+////    mss.open(5600, &ch);
+//    ClientHandler *testClientHandler = new MatrixClientHandler(&sr);
+//    MyParallelServer server;
+//    server.open(5611, testClientHandler);
+//    server.stop();
+//    delete(testClientHandler);
+//    //std::this_thread::sleep_for(std::chrono::milliseconds(200000));
 
     return 0;
 }
