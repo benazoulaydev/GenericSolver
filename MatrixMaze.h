@@ -9,6 +9,7 @@
 #include "Searchable.h"
 #include "Cell.h"
 #include <utility>
+#include <cmath>
 using namespace std;
 
 class MatrixMaze : public Searchable<Cell>{
@@ -86,6 +87,26 @@ public:
         bool l = goal->getState() == s->getState();
         return l;
     }
+    double distanceFromGoal(State<Cell>* state){
+        double dx = (state->getState().getI()-(size-1));
+        double dy = (state->getState().getJ()-(size-1));
+        return sqrt(dx*dx+dy*dy);
+    }
+    string direction(Cell src, Cell dst){
+        if(dst.getJ()-src.getJ() > 0)
+            return "Right";
+        if(dst.getJ()-src.getJ() < 0)
+            return "Left";
+        if(dst.getI()-src.getI() > 0)
+            return "Down";
+        if(dst.getI()-src.getI() < 0)
+            return "Up";
+
+    }
+//    State<Cell>* getGoalState() override {
+//        return makeState(size-1,size-1, -1,-1, maze[0][0]);
+//    }
+
     State<Cell>* makeState(int i, int j, int cameI, int cameJ, double cost);
 };
 

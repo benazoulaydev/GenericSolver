@@ -161,7 +161,6 @@ Solution<T> *BestFirstSearch<T>::search(Searchable<T>* searchable) {
         }
         auto succerssors = searchable->getAllPossibleStates(n);
         for(State<T>* s : *succerssors){
-            s->getState().printS();cout<<endl;
             s->setCost(s->getCost()+n->getCost());
             if(closed.find(s->getState()) == closed.end() && !openContains(s->getState())){
                 addToOpenList(s);

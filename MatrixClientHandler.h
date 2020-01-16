@@ -1,0 +1,14 @@
+//
+// Created by kfiry on 16/01/2020.
+//
+
+#ifndef GENERICSOLVER_MATRIXCLIENTHANDLER_H
+#define GENERICSOLVER_MATRIXCLIENTHANDLER_H
+
+
+class MatrixClientHandler {
+
+};
+
+
+#endif //GENERICSOLVER_MATRIXCLIENTHANDLER_H
