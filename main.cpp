@@ -4,6 +4,9 @@
 #include "MySerialServer.h"
 #include "MyParallelServer.h"
 #include "MyTestClientHandler.h"
+#include "MatrixClientHandler.h"
+#include "MatrixMaze.h"
+
 #include "StringReverser.h"
 #include "MatrixMaze.h"
 #include "Solution.h"

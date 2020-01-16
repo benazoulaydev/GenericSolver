@@ -57,6 +57,9 @@ private:
     int size = 37;
 
 public:
+    MatrixMaze(Cell init, Cell goal, int **maze, int size) {
+
+    }
     State<Cell>* getInitState() override {
         return makeState(0,0, -1,-1, maze[0][0]);
     }
