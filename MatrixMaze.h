@@ -13,37 +13,50 @@ using namespace std;
 
 class MatrixMaze : public Searchable<Cell>{
 private:
-    int **maze;
+    vector<int> maze;
     State<Cell>* init;
     State<Cell>* goal;
     int size;
 
 public:
-    MatrixMaze(Cell initCell, Cell goalCell, int **matrixMaze, int mazeSize){
-        init = new State<Cell>(initCell, *new Cell(-1,-1), maze[initCell.getI()][initCell.getJ()]);
-        goal = new State<Cell>(goalCell, *new Cell(size,size), maze[goalCell.getI()][goalCell.getJ()]);
-        maze = matrixMaze;
+    MatrixMaze(Cell initCell, Cell goalCell, vector<int>* matrixMaze, int mazeSize){
+        maze = *matrixMaze;
+        init = new State<Cell>(initCell, *new Cell(-1,-1), cost(initCell.getI(),initCell.getJ()));
+        goal = new State<Cell>(goalCell, *new Cell(size,size), cost(goalCell.getI(),goalCell.getJ()));
         size = mazeSize;
     }
     State<Cell>* getInitState() override {
         return init;
     }
-    double cost(Cell state){
-        return maze[state.getI()][state.getJ()];
+    int cost(Cell state){
+        return cost(state.getI(),state.getJ());
     }
+    int cost(int i, int j){
+        return maze[i*size+j];
+    }
+    string direction(Cell src, Cell dst) override{
+        if(dst.getJ()-src.getJ() > 0)
+            return "Right";
+        if(dst.getJ()-src.getJ() < 0)
+            return "Left";
+        if(dst.getI()-src.getI() > 0)
+            return "Down";
+        if(dst.getI()-src.getI() < 0)
+            return "Up";
 
+    }
     vector<State<Cell>*>* getAllPossibleStates(const State<Cell>* s) override {
         auto states = new vector<State<Cell>*>;
         int i = s->getState().getI(), j = s->getState().getJ();
         //check bounds
-        if(j!=0 && maze[i][j-1] != -1) // left
-            states->emplace_back(makeState(i,j-1,i,j, maze[i][j-1]));
-        if(i!=0 && maze[i-1][j] != -1) // up
-            states->emplace_back(makeState(i-1,j,i,j, maze[i-1][j]));
-        if(j!=size-1 && maze[i][j+1] != -1) // right
-            states->emplace_back(makeState(i,j+1,i,j, maze[i][j+1]));
-        if(i!=size-1 && maze[i+1][j] != -1) // down
-            states->emplace_back(makeState(i+1,j,i,j, maze[i+1][j]));
+        if(j!=0 && cost(i,j-1) != -1) // left
+            states->emplace_back(makeState(i,j-1,i,j, cost(i,j-1)));
+        if(i!=0 && cost(i-1,j) != -1) // up
+            states->emplace_back(makeState(i-1,j,i,j, cost(i-1,j)));
+        if(j!=size-1 && cost(i,j+1) != -1) // right
+            states->emplace_back(makeState(i,j+1,i,j, cost(i,j+1)));
+        if(i!=size-1 && cost(i+1,j) != -1) // down
+            states->emplace_back(makeState(i+1,j,i,j, cost(i+1,j)));
         return states;
     }
 

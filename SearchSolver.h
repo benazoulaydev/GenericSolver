@@ -12,15 +12,25 @@
 #include "Solution.h"
 #include "ISearcher.h"
 
-class SearchSolver : public Solver<Searchable<Cell>, Solution<Cell>>{
+class SearchSolver : public Solver<Searchable<Cell>, string>{
 private:
     ISearcher<Cell>* searcher;
 public:
     SearchSolver(ISearcher<Cell>* s){
         searcher = s;
     }
-    Solution<Cell> solve(Searchable<Cell>* p) override {
-        return *searcher->search(p);
+
+    string solve(Searchable<Cell>* p) override {
+        Solution<Cell> *s = searcher->search(p);
+        string sol = "";
+        auto &path = *s->getPath();
+        int size = path.size();
+        int cost = p->cost(path[0]);
+        for(int i = 0; i<size-1 ; ++i){
+            sol+=p->direction(path[i],path[i+1]);
+            sol += "("+to_string(cost+p->cost(path[i+1]))+")";
+        }
+        return sol;
     }
 };
 

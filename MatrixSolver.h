@@ -9,10 +9,15 @@
 #include "MatrixMaze.h"
 #include "Solution.h"
 #include "Cell.h"
+#include "Solver.h"
 
-class MatrixSolver : public Solver<MatrixMaze, Solution < Cell>>{
+using namespace std;
+
+class MatrixSolver : public Solver<MatrixMaze, string>{
 public:
-    Solution solve(MatrixMaze *p) override;
+    string solve(MatrixMaze *p) override{
+        Solution<Cell> s = SearchSolver(new DFS<Cell>()).solve(new MatrixMaze());
+    }
 };
 
 
