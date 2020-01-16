@@ -20,10 +20,11 @@ public:
         path->emplace_back(state);
     }
     void addStateFront(T state){
-        path->insert(path->begin(), state);// emplace_back(state);
+        path->insert(path->begin(), state);
     }
     std::vector<T>* getPath(){
         return path;
     }
+
 };
 #endif //GENERICSOLVER_SOLUTION_H
