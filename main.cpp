@@ -4,8 +4,9 @@
 #include "MySerialServer.h"
 #include "MyParallelServer.h"
 #include "MyTestClientHandler.h"
-#include "StringReverser.h"
+#include "MatrixClientHandler.h"
 #include "MatrixMaze.h"
+#include "StringReverser.h"
 #include "Solution.h"
 #include "ISearcher.h"
 #include "BestFirstSearch.h"
@@ -138,6 +139,18 @@ int main() {
 //    server.stop();
 //    delete(testClientHandler);
 //    //std::this_thread::sleep_for(std::chrono::milliseconds(200000));
+
+
+    StringReverser sr{};
+    //MyParallelServer mss{};
+//    MyTestClientHandler ch{&sr};
+//    mss.open(5600, &ch);
+    ClientHandler *testClientHandler = new MatrixClientHandler(&sr);
+    MyParallelServer server;
+    server.open(5611, testClientHandler);
+    server.stop();
+    delete(testClientHandler);
+    //std::this_thread::sleep_for(std::chrono::milliseconds(200000));
 
     return 0;
 }
