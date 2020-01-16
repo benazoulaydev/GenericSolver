@@ -9,6 +9,7 @@
 #include "Searchable.h"
 #include "Cell.h"
 #include <utility>
+#include <cmath>
 using namespace std;
 
 class MatrixMaze : public Searchable<Cell>{
@@ -63,10 +64,20 @@ public:
     bool isGoalState(const State<Cell>* s) override {
         return goal->getState() == s->getState();
     }
+    double distanceFromGoal(State<Cell>* state){
+        double dx = (state->getState().getI()-(size-1));
+        double dy = (state->getState().getJ()-(size-1));
+        return sqrt(dx*dx+dy*dy);
+    }
+//    State<Cell>* getGoalState() override {
+//        return makeState(size-1,size-1, -1,-1, maze[0][0]);
+//    }
+
     State<Cell>* makeState(int i, int j, int cameI, int cameJ, double cost){
         auto c1 = new Cell(i,j);
         auto c2 = new Cell(cameI,cameJ);
         return new State<Cell>(*c1, *c2, cost);
     }
 };
+
 #endif //GENERICSOLVER_MATRIXMAZE_H

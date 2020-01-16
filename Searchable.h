@@ -14,6 +14,7 @@ public:
     virtual State<T> * getInitState()=0;
     virtual std::vector<State<T>*>* getAllPossibleStates(const State<T>* s)=0;
     virtual bool isGoalState(const State<T>* s)=0;
+    virtual double distanceFromGoal(State<T>* state)=0;
     virtual string direction(T src, T dst)=0;
     virtual int cost(T state)=0;
 };
