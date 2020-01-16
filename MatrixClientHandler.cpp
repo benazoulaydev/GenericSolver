@@ -60,13 +60,10 @@ void MatrixClientHandler::handleClient(int socketFD, int outputStream) {
 
     Cell *initCell = new Cell(init_row[0], init_row[1]);
     Cell *goalCell = new Cell(goal_row[0], goal_row[1]);
-    cout<<"hi"<<endl;
 
     MatrixMaze *matrixMaze = new MatrixMaze(*initCell,*goalCell,&matrixLine, sizeMatrix);
-    cout<<"hi"<<endl;
-
-
-
+    string dd = SearchSolver(new BestFirstSearch<Cell>()).solve(matrixMaze);
+    cout<<dd<<endl;
 
 
 

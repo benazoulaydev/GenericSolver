@@ -19,6 +19,9 @@
 #include <sstream>
 #include "Cell.h"
 #include "MatrixMaze.h"
+#include "BestFirstSearch.h"
+#include "SearchSolver.h"
+
 
 class MatrixClientHandler : public ClientHandler{
 private:
