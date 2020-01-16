@@ -43,7 +43,7 @@ int main() {
     //MyParallelServer mss{};
 //    MyTestClientHandler ch{&sr};
 //    mss.open(5600, &ch);
-    ClientHandler *testClientHandler = new MyTestClientHandler(&sr);
+    ClientHandler *testClientHandler = new MatrixClientHandler(&sr);
     MyParallelServer server;
     server.open(5611, testClientHandler);
     server.stop();

@@ -13,13 +13,13 @@ using namespace std;
 
 class MatrixMaze : public Searchable<Cell>{
 private:
-    int **maze;
+    vector<int>*  maze;
     State<Cell>* init;
     State<Cell>* goal;
     int size;
 
 public:
-    MatrixMaze(Cell initCell, Cell goalCell, int **matrixMaze, int mazeSize){
+    MatrixMaze(Cell initCell, Cell goalCell, vector<int>* matrixMaze, int mazeSize){
         init = new State<Cell>(initCell, *new Cell(-1,-1), maze[initCell.getI()][initCell.getJ()]);
         goal = new State<Cell>(goalCell, *new Cell(size,size), maze[goalCell.getI()][goalCell.getJ()]);
         maze = matrixMaze;

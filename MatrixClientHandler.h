@@ -15,10 +15,10 @@
 #include <algorithm>
 #include "MyTestClientHandler.h"
 #include "Searchable.h"
-#include <strings.h>
 #include <vector>
 #include <sstream>
 #include "Cell.h"
+#include "MatrixMaze.h"
 
 class MatrixClientHandler : public ClientHandler{
 private:
@@ -29,6 +29,7 @@ public:
         solver = pSolver;
     }
     void handleClient(int socketFD, int outputStream) override;
+    vector<int> split(string line, char c);
 
 };
 
