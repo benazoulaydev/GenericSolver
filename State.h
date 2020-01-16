@@ -25,16 +25,19 @@ public:
     double getCost() const {
         return cost;
     }
-    bool operator==(const State *rhs)const {
-        return (this->getState() == rhs->getState());
+    bool operator==(const State &rhs)const {
+        return getCost() == rhs.getCost();
+//                return (getState() == rhs.getState());
     }
-    bool operator!=(const State *rhs) const{
-        return !(*this == *rhs);
+    bool operator!=(const State &rhs) const{
+        return !(*this == rhs);
     }
-     bool operator<(const State *rhs)const{
-        return this->cost < rhs->cost;
+    bool operator<(const State &rhs)const{
+        return cost < rhs.cost;
     }
-
+//    friend bool operator==(const State as, const State cs){
+//        return (as.getState() == cs.getState());
+//    }
     void setCameFrom(T from) {
         State::cameFrom = from;
     }

@@ -1,0 +1,14 @@
+//
+// Created by ben on 15/01/2020.
+//
+
+#ifndef GENERICSOLVER_MYCLIENTHANDLER_H
+#define GENERICSOLVER_MYCLIENTHANDLER_H
+
+
+class MyClientHandler {
+
+};
+
+
+#endif //GENERICSOLVER_MYCLIENTHANDLER_H
