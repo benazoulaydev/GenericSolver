@@ -14,7 +14,6 @@
 #include <cstring>
 #include <algorithm>
 #include "MyTestClientHandler.h"
-#include "strinClass.h"
 #include "Searchable.h"
 #include <strings.h>
 #include <vector>
