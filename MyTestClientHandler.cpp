@@ -28,12 +28,15 @@ void MyTestClientHandler::handleClient(int socketFD, int outputStream) {
             return;
         }
         try {
+
             auto emp1 = my_2nd_cache.get(strInput);
-            cout <<"success"<<endl;
+            cout <<"success"<< strInput<<endl;
 
         } catch (const char * e) {
             cout <<"Key doesn't exist"<<endl;
         }
+        //copy strinput string
+        std::string strProblem(strInput);
 
         std::string s = solver->solve(&strInput);
         const char *toSend = s.c_str();
@@ -42,7 +45,9 @@ void MyTestClientHandler::handleClient(int socketFD, int outputStream) {
             std::cout<<"Error sending message"<<std::endl;
         }
         try {
-            my_2nd_cache.insert(strInput, strinClass(s.c_str()));
+            cout <<strProblem<<endl;
+
+            my_2nd_cache.insert(strProblem, strinClass(s.c_str()));
         } catch  (const char * e) {
             cout << e << endl;
         }
