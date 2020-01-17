@@ -38,7 +38,7 @@ public:
                 }
             }
         }
-        cout << "failed" << endl;
+        cout << "DFS failed" << endl;
     }
     int getNumberOfNodeEvaluated() override {
         return evaluatedNodes;

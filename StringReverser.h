@@ -8,10 +8,14 @@
 
 #include <string>
 #include "Solver.h"
+#include <bits/stdc++.h>
 
 class StringReverser : public Solver<std::string, std::string>{
 public:
-    std::string solve(std::string *p) override;
+    std::string solve(std::string *p) override{
+        reverse(p->begin(), p->end());
+        return *p;
+    }
 };
 
 

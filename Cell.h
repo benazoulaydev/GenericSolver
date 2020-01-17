@@ -22,22 +22,16 @@ public:
         i = i1;
         j = j1;
     }
+    //only for debugging
     void printS()const{
         cout<<"("<<i<<","<<j<<")";
     }
     bool operator==(const Cell &other) const {
-//        cout<<this->i<<","<<this->j<<" "<<other.i<<other.j<<endl;
         return ((this->i == other.i) && (this->j == other.j));
     }
     bool operator!=(const Cell &other) const{
         return !(*this == other);
     }
-//    bool operator==(const Cell *other)const {
-//        return (this->i == other->i) && (this->j == other->j);
-//    }
-//    bool operator!=(const Cell *other) const{
-//        return !(*this == *other);
-//    }
     int getI() const {
         return i;
     }

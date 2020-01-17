@@ -4,14 +4,13 @@
 
 #ifndef GENERICSOLVER_ASTAR_H
 #define GENERICSOLVER_ASTAR_H
-
+// naive implemtation of A*
 #include "ISearcher.h"
 #include "Solution.h"
 #include "BFS.h"
 #include <bits/stdc++.h>
 #include <limits>
 template <typename T>
-
 class AStar : public ISearcher<T> {
 private:
     int evaluatedNodes;

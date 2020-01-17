@@ -10,8 +10,8 @@
 #include "BFS.h"
 #include <bits/stdc++.h>
 #include <limits>
+// better implemtation of the algorithm A*
 template <typename T>
-
 class AStar2 : public ISearcher<T> {
 private:
     int evaluatedNodes;
@@ -28,13 +28,11 @@ public:
     }
     // Important!!! Only for matrix grid!!!!!
     double h(State<T> &s){
-//        BFS<T> bfs{};
-////        double d = bfs.absDistance(searchable, s);
-////        return d;
         return searchable->distanceFromGoal(&s);
     }
     Solution<T>* search(Searchable<T>* s) override{
         searchable = s;
+        // psuducode from wikipedia
         // The set of discovered nodes that may need to be (re-)expanded.
         // Initially, only the start node is known.
         State<T>* start = s->getInitState();
@@ -63,14 +61,7 @@ public:
                 cout<<totalCost<<endl;
                 return reconstruct_path(current);
             }
-
             evaluatedNodes++;
-//            for(auto i:openSet){
-//                i.first.printS();
-//            }
-//            current->getState().printS();
-//            cout<<evaluatedNodes<<endl;
-
             openSet.erase(current->getState());
             for (State<T>* neighbor : *s->getAllPossibleStates(current)){
                 T neighborState = neighbor->getState();
@@ -97,13 +88,6 @@ public:
     }
     //current := the node in openSet having the lowest fScore[] value
     State<T>* getCurrent(){
-//        State<T>* current = &openSet.begin()->second;
-//        for(auto pair: openSet){
-//            if(fScore[pair.first] < fScore[current->getState()]) {
-//                current = &pair.second;
-//            }
-//        }
-//        return current;
         auto top = costMap.begin();
         auto newTop = &openSet.at(top->second.getState());
         costMap.erase(top);
