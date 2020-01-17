@@ -55,7 +55,6 @@ public:
                     totalCost+=s->cost(cur);
                     cur = cameFrom[cur];
                 }
-                cout<<totalCost<<endl;
                 return reconstruct_path(current);
             }
 
