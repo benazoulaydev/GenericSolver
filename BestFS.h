@@ -26,35 +26,11 @@ public:
     bool openContains(T state){
         return openSet.find(state) != openSet.end();
     }
-//    double costToState(T state){
-//        double cost = 0;
-//        if(openListMap->find(state) != openListMap->end())
-//            cost = (openListMap->at(state))->getCost();
-//        if(closed->find(state) != closed->end())
-//            cost = (closed->at(state))->getCost();
-//        return cost;
-//    }
     int getNumberOfNodeEvaluated() override {
         return evaluatedNodes;
     }
-//    void updateState(T state, T newCameFrom, double newCost){
-//        State<T>* updatedState = openListMap->at(state);
-//        updatedState->setCameFrom(newCameFrom);
-//        updatedState->setCost(newCost);
-//        openList->erase(*updatedState);
-//        openList->emplace(*updatedState);
-//    }
     State<T>* popOpenList(){
         evaluatedNodes++;
-//        State<T>* current = &openSet.begin()->second;
-//        for(auto pair: openSet){
-//            if(pair.second.getCost() < current->getCost()) {
-//                current = &pair.second;
-//            }
-//        }
-//        openSet.erase(current->getState());
-//        return current;
-
         auto top = costMap.begin();
         auto newTop = &openSet.at(top->second.getState());
         costMap.erase(top);
@@ -80,16 +56,6 @@ Solution<T> *BestFS<T>::search(Searchable<T>* searchable) {
             s->setCost(s->getCost()+n->getCost());
             if(closed.find(s->getState()) == closed.end() && !openContains(s->getState())){
                 addToOpenList(s);
-            } else {
-//                double newCost = s->getCost();
-//                if(newCost < costToState(s->getState())){
-//                    if(!openContains(s->getState())){
-//                        addToOpenList(s);
-//                    }else {
-////                        cout<<"hi"<<endl;
-//                        updateState(s->getState(), n->getState(), newCost);
-//                    }
-//                }
             }
         }
     }

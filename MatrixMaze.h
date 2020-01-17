@@ -49,6 +49,11 @@ public:
     vector<State<Cell>*>* getAllPossibleStates(const State<Cell>* s) override {
         auto states = new vector<State<Cell>*>;
         int i = s->getState().getI(), j = s->getState().getJ();
+        //chek validity
+        if(i>size-1 || i<0 ||j<0 || i>size-1){
+            cout<<"undefined Cell"<<endl;
+            throw "Error in Cell";
+        }
         //check bounds
         if(j!=0 && cost(i,j-1) != -1) // left
             states->emplace_back(makeState(i,j-1,i,j, cost(i,j-1)));
@@ -69,9 +74,6 @@ public:
         double dy = (state->getState().getJ()-(size-1));
         return sqrt(dx*dx+dy*dy);
     }
-//    State<Cell>* getGoalState() override {
-//        return makeState(size-1,size-1, -1,-1, maze[0][0]);
-//    }
 
     State<Cell>* makeState(int i, int j, int cameI, int cameJ, double cost){
         auto c1 = new Cell(i,j);
