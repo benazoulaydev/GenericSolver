@@ -1,11 +1,9 @@
-#include <iostream>
-#include <chrono>
-#include <thread>
+
 #include "MySerialServer.h"
 #include "MyParallelServer.h"
 #include "MyTestClientHandler.h"
 #include "MatrixClientHandler.h"
-#include "MatrixMaze.h"
+
 #include "StringReverser.h"
 #include "Solution.h"
 #include "ISearcher.h"
@@ -147,7 +145,7 @@ int main() {
 //    mss.open(5600, &ch);
     ClientHandler *testClientHandler = new MatrixClientHandler(&sr);
     MyParallelServer server;
-    server.open(5611, testClientHandler);
+    server.open(5627, testClientHandler);
     server.stop();
     delete(testClientHandler);
     //std::this_thread::sleep_for(std::chrono::milliseconds(200000));

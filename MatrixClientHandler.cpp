@@ -14,9 +14,11 @@ void MatrixClientHandler::handleClient(int socketFD, int outputStream) {
     vector<int> init_row;
     vector<int> goal_row;
     vector<int> matrixLine;
-
+    string matrixStr = "";
 
     vector<string> stringMatrix;
+
+    hash<string> hashKey;
 
     Cell p;
     int sizeMatrix = 0;
@@ -35,11 +37,10 @@ void MatrixClientHandler::handleClient(int socketFD, int outputStream) {
             continue;
         }
         stringMatrix.push_back(line);
+        matrixStr += line;
+        matrixStr += '\n';
 
         sizeMatrix++;
-
-
-
 
     }
     while (line != "end");
@@ -54,16 +55,38 @@ void MatrixClientHandler::handleClient(int socketFD, int outputStream) {
         }
 
     }
-    init_row = split(stringMatrix.at(sizeMatrix), ',');
-    goal_row = split(stringMatrix.at(sizeMatrix+1), ',');
+    auto hashed = hashKey(matrixStr);
+    string keyHashed = to_string(hashed);
+    string finalSolution;
+    if (cm->check(keyHashed)) {
+        cout << "key exist" << endl;
+
+        finalSolution = cm->get(keyHashed);
+
+    }else {
+        cout << "key does not exist" << endl;
+        init_row = split(stringMatrix.at(sizeMatrix), ',');
+        goal_row = split(stringMatrix.at(sizeMatrix+1), ',');
 
 
-    Cell *initCell = new Cell(init_row[0], init_row[1]);
-    Cell *goalCell = new Cell(goal_row[0], goal_row[1]);
+        Cell *initCell = new Cell(init_row[0], init_row[1]);
+        Cell *goalCell = new Cell(goal_row[0], goal_row[1]);
 
-    MatrixMaze *matrixMaze = new MatrixMaze(*initCell,*goalCell,&matrixLine, sizeMatrix);
-    string dd = SearchSolver(new BestFirstSearch<Cell>()).solve(matrixMaze);
-    cout<<dd<<endl;
+        MatrixMaze *matrixMaze = new MatrixMaze(*initCell,*goalCell,&matrixLine, sizeMatrix);
+        finalSolution = SearchSolver(new BestFirstSearch<Cell>()).solve(matrixMaze);
+        try {
+            cm->insert(keyHashed, finalSolution);
+        } catch  (const char * e) {
+            cout << e << endl;
+        }
+    }
+
+
+
+    int isSent = send(outputStream, finalSolution.c_str(), finalSolution.size(), 0);
+    if (isSent == -1) {
+        std::cout<<"Error sending message"<<std::endl;
+    }
 
 
 

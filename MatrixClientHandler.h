@@ -7,7 +7,7 @@
 
 #include "ClientHandler.h"
 #include "Solver.h"
-#include "CacheManager.h"
+#include "FileCacheManager.h"
 #include <strings.h>
 #include <unistd.h>
 #include <sys/socket.h>
@@ -30,6 +30,7 @@ private:
 public:
     MatrixClientHandler(Solver<std::string, std::string> *pSolver){
         solver = pSolver;
+        cm = new FileCacheManager<std::string>(5);
     }
     void handleClient(int socketFD, int outputStream) override;
     vector<int> split(string line, char c);
