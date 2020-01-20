@@ -3,7 +3,8 @@
 //
 
 #include "MatrixClientHandler.h"
-
+#include "BestFS.h"
+#include "AStar2.h"
 
 void MatrixClientHandler::handleClient(int socketFD, int outputStream) {
     //TODO add CacheManager feature
@@ -73,7 +74,7 @@ void MatrixClientHandler::handleClient(int socketFD, int outputStream) {
         Cell *goalCell = new Cell(goal_row[0], goal_row[1]);
 
         MatrixMaze *matrixMaze = new MatrixMaze(*initCell,*goalCell,&matrixLine, sizeMatrix);
-        finalSolution = SearchSolver(new BestFirstSearch<Cell>()).solve(matrixMaze);
+        finalSolution = SearchSolver(new BestFS<Cell>()).solve(matrixMaze);
         try {
             cm->insert(keyHashed, finalSolution);
         } catch  (const char * e) {

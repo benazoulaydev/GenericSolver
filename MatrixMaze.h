@@ -22,9 +22,9 @@ private:
 public:
     MatrixMaze(Cell initCell, Cell goalCell, vector<int>* matrixMaze, int mazeSize){
         maze = *matrixMaze;
+        size = mazeSize;
         init = new State<Cell>(initCell, *new Cell(-1,-1), cost(initCell.getI(),initCell.getJ()));
         goal = new State<Cell>(goalCell, *new Cell(size,size), cost(goalCell.getI(),goalCell.getJ()));
-        size = mazeSize;
     }
     State<Cell>* getInitState() override {
         return init;
