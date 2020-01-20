@@ -84,19 +84,7 @@ void MatrixClientHandler::handleClient(int socketFD, int outputStream) {
 
 
 
-    int i
-
-
-
-
-
-
-
-
-
-
-
-    sSent = send(outputStream, finalSolution.c_str(), finalSolution.size(), 0);
+    int isSent = send(outputStream, finalSolution.c_str(), finalSolution.size(), 0);
     if (isSent == -1) {
         std::cout<<"Error sending message"<<std::endl;
     }
