@@ -1,0 +1,324 @@
+commit b4d139e2b4d814ba6bfdbe0caf0f8a08c2c242ae
+Author: kfiryehuda <kfir.yehuda50@gmail.com>
+Date:   Mon Jan 20 20:31:00 2020 +0200
+
+    merge
+
+commit 739c9c328bcafac7a87408bdaa5ece3b750f6c23
+Author: kfiryehuda <kfir.yehuda50@gmail.com>
+Date:   Mon Jan 20 20:30:40 2020 +0200
+
+    merge
+
+commit 73eb4f3b1457d1427932e8b331cdcc6f21caae35
+Author: kfiryehuda <kfir.yehuda50@gmail.com>
+Date:   Mon Jan 20 20:26:35 2020 +0200
+
+    few fixed
+
+commit b8d3e8c6a6fff1b7286696b60b1c32ae6f19b78b
+Author: kfiryehuda <kfir.yehuda50@gmail.com>
+Date:   Mon Jan 20 20:00:34 2020 +0200
+
+    few fixed
+
+commit d5f4a1acaff1590f52bfed98b69a427973816521
+Author: kfiryehuda <kfir.yehuda50@gmail.com>
+Date:   Mon Jan 20 18:29:50 2020 +0200
+
+    merge
+
+commit 18527a222a5d1d22e2b87af3a7f308f35a6f305e
+Author: kfiryehuda <kfir.yehuda50@gmail.com>
+Date:   Mon Jan 20 18:29:33 2020 +0200
+
+    merge
+
+commit 9e3df91733d408435f225e4e7414c121e606d101
+Author: kfiryehuda <kfir.yehuda50@gmail.com>
+Date:   Mon Jan 20 18:27:59 2020 +0200
+
+    bug fix
+
+commit 894fd09dbb3367374d2704220fc71a3affebf2aa
+Merge: 736378e 3e1f5b1
+Author: kfiryehuda <kfir.yehuda50@gmail.com>
+Date:   Mon Jan 20 17:58:47 2020 +0200
+
+    merge
+
+commit 3e1f5b1c1f91a5646098cc34736c0597b4dcfcc3
+Author: benazoulaydev <benazoulaydev@gmail.com>
+Date:   Mon Jan 20 17:32:26 2020 +0200
+
+    cache managr v1
+
+commit 736378ebf9c9ad9e88ccf4000d0a6808db8805f8
+Author: kfiryehuda <kfir.yehuda50@gmail.com>
+Date:   Fri Jan 17 12:16:09 2020 +0200
+
+    clean more code
+
+commit 013d499239dc72ca0c0641489756f23ac44c5015
+Author: kfiryehuda <kfir.yehuda50@gmail.com>
+Date:   Fri Jan 17 12:13:20 2020 +0200
+
+    clean code
+
+commit 7ef8956d13d64701f0c9c4f7b2c016fa86d14a3d
+Author: benazoulaydev <benazoulaydev@gmail.com>
+Date:   Fri Jan 17 10:07:56 2020 +0200
+
+    read
+
+commit 45ecbe2bff39bf0354ad4b7dbdd9099e413840b4
+Author: benazoulaydev <benazoulaydev@gmail.com>
+Date:   Thu Jan 16 15:19:12 2020 +0200
+
+    matrix handler
+
+commit 430da9a1182496fd2a23739d43817c552822e3f4
+Merge: 3344f3d 2da8a24
+Author: kfiryehuda <49205609+kfiryehuda@users.noreply.github.com>
+Date:   Thu Jan 16 15:00:43 2020 +0200
+
+    Merge pull request #4 from benazoulaydev/matrix-solver
+    
+    Matrix solver
+
+commit 2da8a2456cf6c5981bcb407832893fb5f3ee6786
+Merge: f3ad37f 934dd1d
+Author: kfiryehuda <kfir.yehuda50@gmail.com>
+Date:   Thu Jan 16 14:59:44 2020 +0200
+
+    merge with clienthandler
+
+commit f3ad37f0e008c1ae1eceb5a54258b59f252b36f5
+Merge: 3ac7366 f006ad7
+Author: kfiryehuda <kfir.yehuda50@gmail.com>
+Date:   Thu Jan 16 14:53:44 2020 +0200
+
+    merge with master
+
+commit 934dd1da8a4f54e4424983b3eb0d056c4974b5c0
+Author: benazoulaydev <benazoulaydev@gmail.com>
+Date:   Thu Jan 16 14:50:02 2020 +0200
+
+    clienthadlermatrix
+
+commit 3344f3d41482871cbf90a49f15e5fda22c97e348
+Merge: 99e462f 3ac7366
+Author: kfiryehuda <49205609+kfiryehuda@users.noreply.github.com>
+Date:   Thu Jan 16 14:40:06 2020 +0200
+
+    Merge pull request #3 from benazoulaydev/matrix-solver
+    
+    Matrix solver
+
+commit 3ac73661ed1af33f5ae8103bb4ad66ac5c92cffb
+Author: kfiryehuda <kfir.yehuda50@gmail.com>
+Date:   Thu Jan 16 14:37:07 2020 +0200
+
+    fix searchSolver
+
+commit 266759202b9db34ab1fca7c43c07e31983f4ca43
+Author: kfiryehuda <kfir.yehuda50@gmail.com>
+Date:   Thu Jan 16 13:08:13 2020 +0200
+
+    fix linking
+
+commit 9a5b368f2f4487c9a80b09db9e7cf114455ebf2d
+Merge: 56ab497 99e462f
+Author: benazoulaydev <benazoulaydev@gmail.com>
+Date:   Thu Jan 16 12:59:24 2020 +0200
+
+    hhj
+
+commit d1a1492a6c0c86eab057d3acb0c3f1b2fbf18598
+Author: kfiryehuda <kfir.yehuda50@gmail.com>
+Date:   Thu Jan 16 12:56:33 2020 +0200
+
+    progress
+
+commit 56ab497a1245a1a64a218cbe5bf3d116d11dc2fd
+Author: benazoulaydev <benazoulaydev@gmail.com>
+Date:   Thu Jan 16 12:51:18 2020 +0200
+
+    hh
+
+commit 99e462f6066b99bb509d67937e1e22492a5054c5
+Merge: 20fd9d2 f6d89f4
+Author: kfiryehuda <49205609+kfiryehuda@users.noreply.github.com>
+Date:   Thu Jan 16 12:45:17 2020 +0200
+
+    Merge pull request #2 from benazoulaydev/cachemanager
+    
+    Cachemanager
+
+commit f6d89f4186a83225f0db896b3eefa03758a6f0ac
+Merge: af08d84 cae733d
+Author: kfiryehuda <kfir.yehuda50@gmail.com>
+Date:   Thu Jan 16 12:43:00 2020 +0200
+
+    Merge branch 'cachemanager' of https://github.com/benazoulaydev/GenericSolver into cachemanager
+
+commit af08d84695b8b0c1c4c0d40b7070eb815151254b
+Author: kfiryehuda <kfir.yehuda50@gmail.com>
+Date:   Thu Jan 16 12:41:30 2020 +0200
+
+    adjast matrix maze
+
+commit cae733d4bfef0b929dc12c8d3efbdd9fc42fda37
+Author: benazoulaydev <benazoulaydev@gmail.com>
+Date:   Thu Jan 16 12:19:31 2020 +0200
+
+    cache manager fix bug
+
+commit f006ad701cb6b117bd112c5d667afdd837864c7c
+Author: kfiryehuda <kfir.yehuda50@gmail.com>
+Date:   Thu Jan 16 11:38:56 2020 +0200
+
+    im progress of matrix solver
+
+commit 33d4c7217b37132acc18eb06529f81d477d08610
+Author: kfiryehuda <kfir.yehuda50@gmail.com>
+Date:   Thu Jan 16 11:27:08 2020 +0200
+
+    algo optimizations
+
+commit c33a5c1782372d21dbd8e592e22dccf708110436
+Merge: 539d9df 96f15c0
+Author: kfiryehuda <kfir.yehuda50@gmail.com>
+Date:   Wed Jan 15 16:48:26 2020 +0200
+
+    merge
+
+commit 539d9df416c54ebea9ebfca0eb1e8a38d3f9d4de
+Author: benazoulaydev <benazoulaydev@gmail.com>
+Date:   Wed Jan 15 15:50:33 2020 +0200
+
+    parralel server
+
+commit f5189f120a85441dca4f848978a8dd65e94cf5a6
+Author: benazoulaydev <benazoulaydev@gmail.com>
+Date:   Wed Jan 15 15:50:24 2020 +0200
+
+    parralel server
+
+commit 96f15c027e79df90231760056968b85c6d2e2802
+Merge: 20fd9d2 690c04e
+Author: kfiryehuda <kfir.yehuda50@gmail.com>
+Date:   Wed Jan 15 15:49:38 2020 +0200
+
+    merge to algo
+
+commit 690c04e37cdb8c2ace9ee60b0efc9be637a4c44e
+Author: kfiryehuda <kfir.yehuda50@gmail.com>
+Date:   Wed Jan 15 11:49:26 2020 +0200
+
+    fix huge bugs
+
+commit 9f966da46314d09e9d366fefc3f360700e4ada65
+Author: kfiryehuda <kfir.yehuda50@gmail.com>
+Date:   Tue Jan 14 22:33:13 2020 +0200
+
+    finish AStar algorithm
+
+commit 9d467cc755d9780b3b11e71252342d8966216376
+Author: kfiryehuda <kfir.yehuda50@gmail.com>
+Date:   Tue Jan 14 20:12:41 2020 +0200
+
+    few fixes
+
+commit d5781570ad997e8baab287f072b2662960c42890
+Author: kfiryehuda <kfir.yehuda50@gmail.com>
+Date:   Tue Jan 14 20:11:01 2020 +0200
+
+    finish AStar algorithm
+
+commit 60f13527ab5dd10c7a9d17c162f9646ebe90c83b
+Author: kfiryehuda <kfir.yehuda50@gmail.com>
+Date:   Mon Jan 13 22:05:33 2020 +0200
+
+    finish with hope.. DFS and BFS
+
+commit a30df92b3f5efea5e27dfa50723b2d4d9571d5a5
+Author: kfiryehuda <kfir.yehuda50@gmail.com>
+Date:   Mon Jan 13 14:16:16 2020 +0200
+
+    fix bestFirstSearch
+
+commit 1640159d3934d7215b2b3eb76b0bcce08050576a
+Author: kfiryehuda <kfir.yehuda50@gmail.com>
+Date:   Mon Jan 13 09:45:23 2020 +0200
+
+    fix bugs!!!
+
+commit e23e2cb6b9ff8936ed6f3c2f0a458965cbecc4ca
+Author: benazoulaydev <benazoulaydev@gmail.com>
+Date:   Sun Jan 12 22:34:20 2020 +0200
+
+    cache manager for string
+
+commit 0cf684dc22148e6226fd6d8e8e38ddf4488acb25
+Author: kfiryehuda <kfir.yehuda50@gmail.com>
+Date:   Sun Jan 12 21:31:26 2020 +0200
+
+    bugs///
+
+commit 20fd9d21d604641e835825964cba54fe688428d4
+Merge: dd28f7d 20e3b02
+Author: benazoulaydev <benazoulaydev@gmail.com>
+Date:   Sun Jan 12 16:15:11 2020 +0200
+
+    Merge pull request #1 from benazoulaydev/timeout
+    
+    timeout1thread
+
+commit 20e3b028f9c0019ed77b6a2731d4095e5996043a
+Author: benazoulaydev <benazoulaydev@gmail.com>
+Date:   Sun Jan 12 16:13:43 2020 +0200
+
+    timeout1thread
+
+commit dd28f7dd764ccbd992736c2a20b24192f9b94d62
+Author: kfiryehuda <kfir.yehuda50@gmail.com>
+Date:   Sun Jan 12 15:09:34 2020 +0200
+
+    fix bugs
+
+commit 07ec2a6d6d2082fcca3597fc43e7dc4507985295
+Author: kfiryehuda <kfir.yehuda50@gmail.com>
+Date:   Sat Jan 11 22:09:43 2020 +0200
+
+    sttill bugs
+
+commit 860835ccb476b46ec0c0e33b5484b7ad6dbd4e48
+Author: kfiryehuda <kfir.yehuda50@gmail.com>
+Date:   Fri Jan 10 13:54:40 2020 +0200
+
+    add BFS algo but with bugs
+
+commit f098bd5dbbd618c88e74fe34ff04c06003b837e9
+Author: kfiryehuda <kfir.yehuda50@gmail.com>
+Date:   Thu Jan 9 22:47:18 2020 +0200
+
+    add some classes in progress
+
+commit eecaa0308373b42d19950ee20a46526ae8a3576c
+Author: kfiryehuda <kfir.yehuda50@gmail.com>
+Date:   Wed Jan 8 11:03:19 2020 +0200
+
+    start commit
+
+commit 323113b789e324b4dcd1382a4eee8f24271d73b1
+Author: benazoulaydev <benazoulaydev@gmail.com>
+Date:   Tue Jan 7 20:11:41 2020 +0200
+
+    dd
+
+commit f369a113686c5c9cf1b2fae5b5d6cf1071c620a8
+Author: benazoulaydev <benazoulaydev@gmail.com>
+Date:   Tue Jan 7 20:08:05 2020 +0200
+
+    first commit
