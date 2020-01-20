@@ -232,8 +232,8 @@ public:
     ~FileCacheManager() {
         //create an iterator to iterate through the map and delete objs.
         // typename for the Template T objects
-        typename map<string, Node<T>*> ::iterator i1;
-        for(i1=pageMap.begin();i1!=pageMap.end();i1++) {
+//        typename map<string, Node<T>*> ::iterator i1;
+        for(auto i1=pageMap.begin();i1!=pageMap.end();i1++) {
             delete i1->second;
         }
         delete pageList;

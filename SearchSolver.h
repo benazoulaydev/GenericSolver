@@ -22,6 +22,7 @@ public:
 
     string solve(Searchable<Cell>* p) override {
         Solution<Cell> *s = searcher->search(p);
+        cout<<searcher->getNumberOfNodeEvaluated()<<endl;
         string sol = "";
         auto &path = *s->getPath();
         int size = path.size();

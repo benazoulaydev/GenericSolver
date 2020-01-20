@@ -5,6 +5,9 @@
 #include "MatrixClientHandler.h"
 #include "BestFS.h"
 #include "AStar2.h"
+#include "BFS.h"
+#include "DFS.h"
+
 
 void MatrixClientHandler::handleClient(int socketFD, int outputStream) {
     //TODO add CacheManager feature
@@ -88,9 +91,6 @@ void MatrixClientHandler::handleClient(int socketFD, int outputStream) {
     if (isSent == -1) {
         std::cout<<"Error sending message"<<std::endl;
     }
-
-
-
 }
 
 
