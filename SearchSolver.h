@@ -30,7 +30,10 @@ public:
         for(int i = 0; i<size-1 ; ++i){
             sol+=p->direction(path[i],path[i+1]);
             cost += p->cost(path[i+1]);
-            sol += "("+to_string(cost)+")";
+            sol += " ("+to_string(cost)+")";
+            if(i != size-2){
+                sol+=" ,";
+            }
         }
         return sol;
     }
