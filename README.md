@@ -29,3 +29,9 @@ g++ -std=c++14
 
 ## Additional info
 you can  find the file "Experiment-results.pdf" in the repository with statistic about all the fourth algorithms that been run on 10 different matrix in different sizes between 10-50.
+
+## Collaborators
+This program was developed by [kfir yehuda](https://github.com/kfiryehuda) and [ben azoulay](https://github.com/benazoulaydev/), CS students from Bar-Ilan University, Israel.
+
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
