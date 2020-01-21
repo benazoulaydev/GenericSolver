@@ -3,7 +3,7 @@ import time
 import threading
 
 IP = 'localhost'
-PORT = 5611
+PORT = 5600
 SLEEP_TIME = 0.1
 BUFFER_SIZE = 2048
 
@@ -29,9 +29,8 @@ def send_and_receive(client, i):
     for line in lines:
         client.send(line.encode('ASCII'))
         time.sleep(SLEEP_TIME)
-    print "client " + str(i + 1) + " sent to server"
+    print "Matrix " + str(i + 1)
     receive_message = client.recv(BUFFER_SIZE).decode('ASCII')
-    print "client " + str(i + 1) + " received:"
     print receive_message
     print ""
     client.close()
