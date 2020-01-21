@@ -4,7 +4,7 @@
 
 #include "MatrixClientHandler.h"
 #include "BestFS.h"
-#include "AStar2.h"
+#include "AStar.h"
 #include "BFS.h"
 #include "DFS.h"
 

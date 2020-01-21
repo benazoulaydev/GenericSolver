@@ -14,8 +14,8 @@
 #include "SearchSolver.h"
 #include "BFS.h"
 #include "DFS.h"
+#include "AStar_v1.h"
 #include "AStar.h"
-#include "AStar2.h"
 #include <queue>
 #include <algorithm>
 #include <chrono>

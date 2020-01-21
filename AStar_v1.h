@@ -1,27 +1,24 @@
 //
-// Created by kfiry on 16/01/2020.
+// Created by kfiry on 14/01/2020.
 //
 
-#ifndef GENERICSOLVER_ASTAR2_H
-#define GENERICSOLVER_ASTAR2_H
-
+#ifndef GENERICSOLVER_ASTAR_V1_H
+#define GENERICSOLVER_ASTAR_V1_H
+// naive implemtation of A*
 #include "ISearcher.h"
 #include "Solution.h"
 #include "BFS.h"
 #include <bits/stdc++.h>
 #include <limits>
-// better implemtation of the algorithm A*
 template <typename T>
-class AStar2 : public ISearcher<T> {
+class AStar_v1 : public ISearcher<T> {
 private:
     int evaluatedNodes;
     Searchable<T>* searchable;
-    multimap<double, State<T>&> costMap;
     unordered_map<T, State<T>&> openSet;
     unordered_map<T, T> cameFrom;
     unordered_map<T, double> gScore;
     unordered_map<T, double> fScore;
-
 public:
     /**
      * getNumberOfNodeEvaluated
@@ -30,14 +27,15 @@ public:
     int getNumberOfNodeEvaluated() override {
         return evaluatedNodes;
     }
-
     /**
-    * Important!!! Only for matrix grid!!!!!
-    * @param s
-    * @return the distance to the goal
-    */
+     *
+     * @param s
+     * @return the distance to the goal
+     */
     double h(State<T> &s){
-        return searchable->distanceFromGoal(&s);
+        BFS<T> bfs{};
+        double d = bfs.absDistance(searchable, s);
+        return d;
     }
     /**
      * A* algo
@@ -46,11 +44,10 @@ public:
      */
     Solution<T>* search(Searchable<T>* s) override{
         searchable = s;
-        // psuducode from wikipedia
         // The set of discovered nodes that may need to be (re-)expanded.
         // Initially, only the start node is known.
         State<T>* start = s->getInitState();
-        addToOpen(start);
+        openSet.emplace(start->getState(), *start);
         // For node n, cameFrom[n] is the node immediately preceding it on the cheapest path from start to n currently known.
 
         // For node n, gScore[n] is the cost of the cheapest path from start to n currently known.
@@ -74,7 +71,14 @@ public:
                 }
                 return reconstruct_path(current);
             }
+
             evaluatedNodes++;
+//            for(auto i:openSet){
+//                i.first.printS();
+//            }
+//            current->getState().printS();
+//            cout<<evaluatedNodes<<endl;
+
             openSet.erase(current->getState());
             for (State<T>* neighbor : *s->getAllPossibleStates(current)){
                 T neighborState = neighbor->getState();
@@ -90,9 +94,9 @@ public:
                     // This path to neighbor is better than any previous one. Record it!
                     cameFrom[neighborState] = current->getState();
                     gScore[neighborState] = tentative_gScore;
-                    fScore[neighborState] = 2*gScore[neighborState] + h(*neighbor);
+                    fScore[neighborState] = gScore[neighborState] + h(*neighbor);
                     if(openSet.find(neighborState) == openSet.end())
-                        addToOpen(neighbor);
+                        openSet.emplace(neighborState, *neighbor);
                 }
             }
         }
@@ -104,25 +108,19 @@ public:
      * @return current
      */
     State<T>* getCurrent(){
-        auto top = costMap.begin();
-        auto newTop = &openSet.at(top->second.getState());
-        costMap.erase(top);
-        openSet.erase(newTop->getState());
-        return newTop;
+        State<T>* current = &openSet.begin()->second;
+        for(auto pair: openSet){
+            if(fScore[pair.first] < fScore[current->getState()]) {
+                current = &pair.second;
+            }
+        }
+        return current;
     }
     /**
-     * add state to openSet Map
-     * @param state
+     * the new path to solution
+     * @param goal
+     * @return the new path to solution
      */
-    void addToOpen(State<T>* state){
-        openSet.emplace(state->getState(), *state);
-        costMap.emplace(fScore[state->getState()], *state);
-    }
-    /**
-    * the new path to solution
-    * @param goal
-    * @return the new path to solution
-    */
     Solution<T> *reconstruct_path (State<T>* goal){
         T current = goal->getState();
         Solution<T>* total_path = new Solution<T>();
@@ -130,13 +128,10 @@ public:
             total_path->addStateFront(current);
             current = cameFrom[current];
         }
-        total_path->addStateFront(searchable->getInitState()->getState());
         return total_path;
     }
-    ~AStar2(){};
-
+    ~AStar_v1(){};
 };
 
 
-
-#endif //GENERICSOLVER_ASTAR2_H
+#endif //GENERICSOLVER_ASTAR_V1_H
