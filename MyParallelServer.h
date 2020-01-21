@@ -20,12 +20,30 @@ private:
     vector<thread*> vectOfThread;
     int socketServer;
 public :
+    /**
+     * open the parralel server
+     * @param port
+     * @param c
+     */
     void open(int port, ClientHandler* c);
+    /**
+     * stop the server
+     */
     void stop();
+    /**
+     * start the parallel server
+     * @param socketID
+     * @param clientHandler
+     */
     void start(int socketID, ClientHandler* clientHandler);
+    /**
+     * open new thread for new client connection
+     * @param clientSocket
+     * @param clientHandler
+     */
     static void openNewThread(int clientSocket, ClientHandler* clientHandler);
     ~MyParallelServer() {
-        for(int i = 0; i < vectOfThread.size(); i++) {
+        for(unsigned i = 0; i < vectOfThread.size(); i++) {
             delete(vectOfThread.at(i));
         }
     }

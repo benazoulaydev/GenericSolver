@@ -18,10 +18,18 @@ private:
     bool fromStart = true;
     State<T>* initState;
 public:
-
+    /**
+     * getNumberOfNodeEvaluated
+     * @return the number of node evaluated
+     */
     int getNumberOfNodeEvaluated() override {
         return evaluatedNodes;
     }
+    /**
+     * BFS Algo
+     * @param s
+     * @return the solution
+     */
     Solution<T> *search(Searchable<T> *s) override {
         if(fromStart)
             initState = s->getInitState();
@@ -45,7 +53,13 @@ public:
             }
         }
     }
-
+    /**
+    * backTrace
+    * @tparam T
+    * @param goalState
+    * @param init
+    * @return the solution
+    */
     Solution<T> *backTrace(const State<T>* goalState, State<T> *init) {
         Solution<T>* solution = new Solution<T>();
         const State<T>* tempState;
@@ -57,12 +71,19 @@ public:
         solution->addStateFront(tempState->getState());
         return solution;
     }
-
+    /**
+     * The distance to the goal
+     * @param s
+     * @param init
+     * @return the distance
+     */
     int absDistance(Searchable<T> *s, State<T> &init){
         fromStart = false;
         initState = &init;
         return search(s)->getPath()->size() - 1;
     }
+    ~BFS(){};
+
 };
 
 

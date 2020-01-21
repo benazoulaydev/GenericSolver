@@ -148,13 +148,20 @@ public:
             {
                 throw "an error";
             } else {
-                T val;
-                file_obj >> val;
+                string solution = "";
+                string line;
+                // read solution
+                while (file_obj >> line) {
+                    solution += line;
+                    solution += " ,";
+                }
+                solution = solution.substr(0, solution.size()-2);
+
                 //file_obj.read((char*)&val, sizeof(val));
                 //insert the new value (get an insert : twice but more shorter code 2O(i) = O(i))
-                this->insert(key, val);
+                this->insert(key, solution);
                 file_obj.close();
-                return val;
+                return solution;
             }
         } else {
             //create a variable of type teplate T to store the current obj

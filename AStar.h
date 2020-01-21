@@ -20,14 +20,28 @@ private:
     unordered_map<T, double> gScore;
     unordered_map<T, double> fScore;
 public:
+    /**
+     * getNumberOfNodeEvaluated
+     * @return the number of node evaluated
+     */
     int getNumberOfNodeEvaluated() override {
         return evaluatedNodes;
     }
+    /**
+     *
+     * @param s
+     * @return the distance to the goal
+     */
     double h(State<T> &s){
         BFS<T> bfs{};
         double d = bfs.absDistance(searchable, s);
         return d;
     }
+    /**
+     * A* algo
+     * @param s
+     * @return the solution
+     */
     Solution<T>* search(Searchable<T>* s) override{
         searchable = s;
         // The set of discovered nodes that may need to be (re-)expanded.
@@ -89,7 +103,10 @@ public:
         // Open set is empty but goal was never reached
         cout<<"A* Failed"<<endl;
     }
-    //current := the node in openSet having the lowest fScore[] value
+    /**
+     * current := the node in openSet having the lowest fScore[] value
+     * @return current
+     */
     State<T>* getCurrent(){
         State<T>* current = &openSet.begin()->second;
         for(auto pair: openSet){
@@ -99,7 +116,11 @@ public:
         }
         return current;
     }
-
+    /**
+     * the new path to solution
+     * @param goal
+     * @return the new path to solution
+     */
     Solution<T> *reconstruct_path (State<T>* goal){
         T current = goal->getState();
         Solution<T>* total_path = new Solution<T>();
@@ -109,6 +130,7 @@ public:
         }
         return total_path;
     }
+    ~AStar(){};
 };
 
 

@@ -23,13 +23,27 @@ private:
     unordered_map<T, double> fScore;
 
 public:
+    /**
+     * getNumberOfNodeEvaluated
+     * @return the number of node evaluated
+     */
     int getNumberOfNodeEvaluated() override {
         return evaluatedNodes;
     }
-    // Important!!! Only for matrix grid!!!!!
+
+    /**
+    * Important!!! Only for matrix grid!!!!!
+    * @param s
+    * @return the distance to the goal
+    */
     double h(State<T> &s){
         return searchable->distanceFromGoal(&s);
     }
+    /**
+     * A* algo
+     * @param s
+     * @return the solution
+     */
     Solution<T>* search(Searchable<T>* s) override{
         searchable = s;
         // psuducode from wikipedia
@@ -85,7 +99,10 @@ public:
         // Open set is empty but goal was never reached
         cout<<"A* Failed"<<endl;
     }
-    //current := the node in openSet having the lowest fScore[] value
+    /**
+     * current := the node in openSet having the lowest fScore[] value
+     * @return current
+     */
     State<T>* getCurrent(){
         auto top = costMap.begin();
         auto newTop = &openSet.at(top->second.getState());
@@ -93,11 +110,19 @@ public:
         openSet.erase(newTop->getState());
         return newTop;
     }
+    /**
+     * add state to openSet Map
+     * @param state
+     */
     void addToOpen(State<T>* state){
         openSet.emplace(state->getState(), *state);
         costMap.emplace(fScore[state->getState()], *state);
     }
-
+    /**
+    * the new path to solution
+    * @param goal
+    * @return the new path to solution
+    */
     Solution<T> *reconstruct_path (State<T>* goal){
         T current = goal->getState();
         Solution<T>* total_path = new Solution<T>();
@@ -108,6 +133,8 @@ public:
         total_path->addStateFront(searchable->getInitState()->getState());
         return total_path;
     }
+    ~AStar2(){};
+
 };
 
 

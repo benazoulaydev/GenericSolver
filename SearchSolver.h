@@ -19,7 +19,11 @@ public:
     SearchSolver(ISearcher<Cell>* s){
         searcher = s;
     }
-
+    /**
+     * search given a searchable for the solution
+     * @param s
+     * @return the solution
+     */
     string solve(Searchable<Cell>* p) override {
         Solution<Cell> *s = searcher->search(p);
         cout<<searcher->getNumberOfNodeEvaluated()<<endl;
@@ -37,6 +41,8 @@ public:
         }
         return sol;
     }
+    ~SearchSolver(){}
+
 };
 
 

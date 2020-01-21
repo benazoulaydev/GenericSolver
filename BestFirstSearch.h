@@ -19,15 +19,24 @@ private:
     Solution<T> *backTrace(State<T>* goalState, State<T> *init);
     Searchable<T>* searchableI;
 public:
+
     void addToOpenList(State<T>* state){
         openSet.emplace(state->getState(), *state);
     }
     bool openContains(T state){
         return openSet.find(state) != openSet.end();
     }
+    /**
+     * getNumberOfNodeEvaluated
+     * @return the number of node evaluated
+     */
     int getNumberOfNodeEvaluated() override {
         return evaluatedNodes;
     }
+    /**
+     * popOpenList
+     * @return
+     */
     State<T>* popOpenList(){
         evaluatedNodes++;
         State<T>* current = &openSet.begin()->second;
@@ -40,10 +49,16 @@ public:
         return current;
     }
     Solution<T>* search(Searchable<T>* searchable) override;
+    ~BestFirstSearch(){};
 };
 
 
 template<typename T>
+/**
+ * BestFirstSearch algo
+ * @param searchable
+ * @return the solution
+ */
 Solution<T> *BestFirstSearch<T>::search(Searchable<T>* searchable) {
     searchableI = searchable;
     addToOpenList(searchable->getInitState());
@@ -67,6 +82,13 @@ Solution<T> *BestFirstSearch<T>::search(Searchable<T>* searchable) {
 
 
 template<typename T>
+/**
+ * backTrace
+ * @tparam T
+ * @param goalState
+ * @param init
+ * @return the solution
+ */
 Solution<T> *BestFirstSearch<T>::backTrace(State<T> *goalState, State<T> *init) {
     Solution<T>* solution = new Solution<T>();
     State<T>* tempState;

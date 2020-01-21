@@ -32,8 +32,22 @@ public:
         solver = pSolver;
         cm = new FileCacheManager<std::string>(5);
     }
+    /**
+    * handle client for matrix input by client
+    * @param socketFD
+    * @param outputStream
+    */
     void handleClient(int socketFD, int outputStream) override;
+    /**
+     * create vector of a given string
+     * @param line
+     * @param c
+     * @return
+     */
     vector<int> split(string line, char c);
+    ~MatrixClientHandler(){
+
+    }
 
 };
 

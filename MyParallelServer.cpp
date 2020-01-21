@@ -3,6 +3,11 @@
 //
 
 #include "MyParallelServer.h"
+/**
+ * open the parralel server
+ * @param port
+ * @param c
+ */
 void MyParallelServer :: open (int port, ClientHandler* c) {
 
     int sockfd,portno;
@@ -35,21 +40,27 @@ void MyParallelServer :: open (int port, ClientHandler* c) {
 
     start(this->socketServer, c);
 }
-
+/**
+ * stop the server
+ */
 void MyParallelServer :: stop() {
     for(vector<thread*>::iterator iterator1 = this->vectOfThread.begin(); iterator1 != this->vectOfThread.end(); iterator1++) {
         (*(iterator1))->join();
     }
     close(this->socketServer);
 }
-
+/**
+ * start the parallel server
+ * @param socketID
+ * @param clientHandler
+ */
 void MyParallelServer ::start(int socketID, ClientHandler *clientHandler) {
     bool is_running = true;
     int clientSock;
     bool secondConnection = false;
     while(is_running) {
 
-        int newsockfd, clilen;
+        int clilen;
 
         struct sockaddr_in cli_addr;
         clilen = sizeof(cli_addr);
@@ -80,7 +91,11 @@ void MyParallelServer ::start(int socketID, ClientHandler *clientHandler) {
     }
 }
 
-
+/**
+ * open new thread for new client connection
+ * @param clientSocket
+ * @param clientHandler
+ */
 void MyParallelServer ::openNewThread(int clientSocket, ClientHandler *clientHandler) {
     clientHandler->handleClient(clientSocket, clientSocket);
     close(clientSocket);

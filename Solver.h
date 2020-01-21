@@ -8,7 +8,14 @@
 template <typename Problem, typename Sol>
 class Solver{
 public:
+    /**
+     * solve a given problem
+     * @param p
+     * @return the solution
+     */
     virtual Sol solve(Problem* p) = 0;
+    virtual ~Solver() {}
+
 };
 
 
