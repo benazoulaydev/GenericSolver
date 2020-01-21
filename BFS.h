@@ -12,12 +12,20 @@ using namespace std;
 
 template <typename T> class BFS : public ISearcher<T>{
 private:
+    int idAlgo =5;
     queue<State<T>> Q;
     unordered_map<T, pair<bool,State<T>*>> discovered;
     int evaluatedNodes;
     bool fromStart = true;
     State<T>* initState;
 public:
+    /**
+     * id of algo for hash name
+     * @return
+     */
+    int getIdAlgo() {
+        return idAlgo;
+    }
     /**
      * getNumberOfNodeEvaluated
      * @return the number of node evaluated

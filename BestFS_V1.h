@@ -13,13 +13,20 @@
 template <typename T>
 class BestFirstSearch : public ISearcher<T>{
 private:
+    int idAlgo =4;
     unordered_map<T, State<T>&> openSet;
     unordered_map<T, State<T>&> closed;
     int evaluatedNodes = 0;
     Solution<T> *backTrace(State<T>* goalState, State<T> *init);
     Searchable<T>* searchableI;
 public:
-
+    /**
+     * id of algo for hash name
+     * @return
+     */
+    int getIdAlgo() {
+        return idAlgo;
+    }
     void addToOpenList(State<T>* state){
         openSet.emplace(state->getState(), *state);
     }

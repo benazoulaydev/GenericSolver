@@ -14,6 +14,8 @@
 template <typename T>
 class AStar : public ISearcher<T> {
 private:
+    int idAlgo = 1;
+
     int evaluatedNodes;
     Searchable<T>* searchable;
     multimap<double, State<T>&> costMap;
@@ -23,6 +25,13 @@ private:
     unordered_map<T, double> fScore;
 
 public:
+    /**
+     * id of algo for hash name
+     * @return
+     */
+    int getIdAlgo() {
+        return idAlgo;
+    }
     /**
      * getNumberOfNodeEvaluated
      * @return the number of node evaluated

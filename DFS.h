@@ -11,10 +11,18 @@
 using namespace std;
 
 template <typename T> class DFS  : public ISearcher<T>{
+    int idAlgo =6;
     stack<State<T>> S;
     unordered_map<T, pair<bool,State<T>*>> discovered;
     int evaluatedNodes;
 public:
+    /**
+     * id of algo for hash name
+     * @return
+     */
+    int getIdAlgo() {
+        return idAlgo;
+    }
     /**
      * the Dfs algo
      * @param s

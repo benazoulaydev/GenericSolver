@@ -13,6 +13,7 @@
 template <typename T>
 class AStar_v1 : public ISearcher<T> {
 private:
+    int idAlgo =2;
     int evaluatedNodes;
     Searchable<T>* searchable;
     unordered_map<T, State<T>&> openSet;
@@ -20,6 +21,13 @@ private:
     unordered_map<T, double> gScore;
     unordered_map<T, double> fScore;
 public:
+    /**
+     * id of algo for hash name
+     * @return
+     */
+    int getIdAlgo() {
+        return idAlgo;
+    }
     /**
      * getNumberOfNodeEvaluated
      * @return the number of node evaluated
