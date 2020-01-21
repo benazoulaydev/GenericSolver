@@ -155,7 +155,7 @@ public:
                     solution += line;
                     solution += " ";
                 }
-                solution = solution.substr(0, solution.size()-2);
+                solution = solution.substr(0, solution.size()-1);
 
                 //file_obj.read((char*)&val, sizeof(val));
                 //insert the new value (get an insert : twice but more shorter code 2O(i) = O(i))
