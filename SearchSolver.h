@@ -15,8 +15,10 @@
 class SearchSolver : public Solver<Searchable<Cell>, string>{
 private:
     ISearcher<Cell>* searcher;
+    int idAlgo;
 public:
     SearchSolver(ISearcher<Cell>* s){
+        idAlgo = s->getIdAlgo();
         searcher = s;
     }
     /**
@@ -40,6 +42,13 @@ public:
             }
         }
         return sol;
+    }
+    /**
+     * id of algo for hash name
+     * @return
+     */
+    int getIdAlgo() {
+        return idAlgo;
     }
     ~SearchSolver(){}
 

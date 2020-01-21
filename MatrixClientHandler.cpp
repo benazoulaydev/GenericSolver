@@ -7,7 +7,6 @@
 #include "AStar.h"
 #include "BFS.h"
 #include "DFS.h"
-
 /**
  * handle client for matrix input by client
  * @param socketFD
@@ -64,8 +63,9 @@ void MatrixClientHandler::handleClient(int socketFD, int outputStream) {
 
     }
     //create hash string from problem string to minimize the size file name
-
-    auto hashed = hashKey(matrixStr);
+    ISearcher<Cell>* s = new BestFS<Cell>();
+    std::string strId = std::to_string(s->getIdAlgo());
+    auto hashed = hashKey(matrixStr + strId);
     string keyHashed = to_string(hashed);
     string finalSolution;
     if (cm->check(keyHashed)) {
@@ -83,7 +83,7 @@ void MatrixClientHandler::handleClient(int socketFD, int outputStream) {
         Cell *goalCell = new Cell(goal_row[0], goal_row[1]);
 
         MatrixMaze *matrixMaze = new MatrixMaze(*initCell,*goalCell,&matrixLine, sizeMatrix);
-        finalSolution = SearchSolver(new BestFS<Cell>()).solve(matrixMaze);
+        finalSolution = SearchSolver(s).solve(matrixMaze);
         try {
             cm->insert(keyHashed, finalSolution);
         } catch  (const char * e) {

@@ -13,6 +13,7 @@ using namespace  std;
 template <typename T>
 class BestFS : public ISearcher<T>{
 private:
+    int idAlgo = 3;
     multimap<double, State<T>&> costMap;
     unordered_map<T, State<T>&> openSet;
     unordered_map<T, State<T>&> closed;
@@ -20,6 +21,13 @@ private:
     Solution<T> *backTrace(State<T>* goalState, State<T> *init);
     Searchable<T>* searchableI;
 public:
+    /**
+     * id of algo for hash name
+     * @return
+     */
+    int getIdAlgo() {
+        return idAlgo;
+    }
     /**
      * add state to openSet Map
      * @param state

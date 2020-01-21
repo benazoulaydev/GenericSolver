@@ -9,7 +9,6 @@
 #include "StringReverser.h"
 #include "Solution.h"
 #include "ISearcher.h"
-#include "BestFirstSearch.h"
 #include "BestFS.h"
 #include "SearchSolver.h"
 #include "BFS.h"

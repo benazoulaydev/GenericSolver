@@ -22,6 +22,8 @@ public:
      * @return the number of node evaluated with algo
      */
     virtual int getNumberOfNodeEvaluated()=0;
+    virtual int getIdAlgo()=0;
+
     virtual ~ISearcher() {}
 
 };
