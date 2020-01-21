@@ -26,11 +26,14 @@ public:
         string sol = "";
         auto &path = *s->getPath();
         int size = path.size();
-        int cost = p->cost(p->getInitState()->getState()) + p->cost(path[0]);
+        int cost = p->cost(path[0]);
         for(int i = 0; i<size-1 ; ++i){
             sol+=p->direction(path[i],path[i+1]);
             cost += p->cost(path[i+1]);
-            sol += "("+to_string(cost)+")";
+            sol += " ("+to_string(cost)+")";
+            if(i != size-2){
+                sol+=" ,";
+            }
         }
         return sol;
     }
