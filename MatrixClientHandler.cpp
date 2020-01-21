@@ -8,7 +8,11 @@
 #include "BFS.h"
 #include "DFS.h"
 
-
+/**
+ * handle client for matrix input by client
+ * @param socketFD
+ * @param outputStream
+ */
 void MatrixClientHandler::handleClient(int socketFD, int outputStream) {
     //TODO add CacheManager feature
     //CacheManager<strinClass> my_2nd_cache(5);
@@ -59,6 +63,8 @@ void MatrixClientHandler::handleClient(int socketFD, int outputStream) {
         }
 
     }
+    //create hash string from problem string to minimize the size file name
+
     auto hashed = hashKey(matrixStr);
     string keyHashed = to_string(hashed);
     string finalSolution;
@@ -93,16 +99,21 @@ void MatrixClientHandler::handleClient(int socketFD, int outputStream) {
     }
 }
 
-
+/**
+ * create vector of a given string
+ * @param line
+ * @param c
+ * @return
+ */
 vector<int> MatrixClientHandler::split(string line, char c) {
     stringstream ss( line );
-    vector<int> resultat;
+    vector<int> result;
     while( ss.good() )
     {
         string substr;
         getline( ss, substr, c );
-        resultat.push_back( stoi(substr) );
+        result.push_back( stoi(substr) );
     }
-    return resultat;
+    return result;
 }
 

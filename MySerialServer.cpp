@@ -15,12 +15,20 @@
 #include <cstring>
 
 #include "MySerialServer.h"
-
+/**
+ * open the serial server
+ * @param port
+ * @param c
+ */
 void MySerialServer::open(int port, ClientHandler* c) {
     std::thread thread1(&MySerialServer::start,this, port, c);
     thread1.detach();
 }
-
+/**
+ * start the serial server
+ * @param socketID
+ * @param clientHandler
+ */
 int MySerialServer::start(int port, ClientHandler* c) {
 
 
@@ -30,8 +38,7 @@ int MySerialServer::start(int port, ClientHandler* c) {
     int opt = 1;
     int rc;
     int addrlen = sizeof(address);
-    char buffer[1024] = {0};
-    char *hello = "Hello from server\n";
+
     struct timeval timeout;
     fd_set master_set, working_set;
 
@@ -129,7 +136,9 @@ int MySerialServer::start(int port, ClientHandler* c) {
     close(server_fd);
     return 0;
 }
-
+/**
+ * stop the serial server
+ */
 void MySerialServer::stop() {
     running = false;
 }

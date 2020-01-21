@@ -10,8 +10,18 @@
 
 class Server {
 public:
+    /**
+     * open the server
+     * @param port
+     * @param c
+     */
     virtual void open(int port, ClientHandler* c) = 0;
+    /**
+     * stop the server
+     */
     virtual void stop() = 0;
+    virtual ~Server(){}
+
 };
 
 

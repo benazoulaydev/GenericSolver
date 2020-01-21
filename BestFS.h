@@ -20,6 +20,10 @@ private:
     Solution<T> *backTrace(State<T>* goalState, State<T> *init);
     Searchable<T>* searchableI;
 public:
+    /**
+     * add state to openSet Map
+     * @param state
+     */
     void addToOpenList(State<T>* state){
         openSet.emplace(state->getState(), *state);
         costMap.emplace(state->getCost(), *state);
@@ -27,9 +31,17 @@ public:
     bool openContains(T state){
         return openSet.find(state) != openSet.end();
     }
+    /**
+     * getNumberOfNodeEvaluated
+     * @return the number of node evaluated
+     */
     int getNumberOfNodeEvaluated() override {
         return evaluatedNodes;
     }
+    /**
+     * pop value from openList map
+     * @return the new top
+     */
     State<T>* popOpenList(){
         evaluatedNodes++;
         auto top = costMap.begin();
@@ -45,6 +57,12 @@ public:
 
 
 template<typename T>
+/**
+ * BestFs Algo
+ * @tparam T
+ * @param searchable
+ * @return
+ */
 Solution<T> *BestFS<T>::search(Searchable<T>* searchable) {
     searchableI = searchable;
     addToOpenList(searchable->getInitState());
@@ -65,10 +83,18 @@ Solution<T> *BestFS<T>::search(Searchable<T>* searchable) {
         }
     }
     cout<<"bestFS did not work "<<getNumberOfNodeEvaluated()<<endl;
+    return nullptr;
 }
 
 
 template<typename T>
+/**
+ * backTrace
+ * @tparam T
+ * @param goalState
+ * @param init
+ * @return the solution
+ */
 Solution<T> *BestFS<T>::backTrace(State<T> *goalState, State<T> *init) {
     Solution<T>* solution = new Solution<T>();
     State<T>* tempState;
@@ -89,7 +115,6 @@ BestFS<T>::~BestFS() {
     for(auto i1=openSet.begin();i1!=openSet.end();i1++) {
         delete &i1->second;
     }
-    cout<<"hi"<<endl;
 }
 
 

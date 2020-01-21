@@ -8,5 +8,5 @@ add_executable(GenericSolver main.cpp Server.h ClientHandler.h MySerialServer.cp
         MySerialServer.h MyTestClientHandler.cpp MyTestClientHandler.h Solver.h
         StringReverser.h CacheManager.h State.h Searchable.h ISearcher.h Solution.h BestFirstSearch.h MatrixMaze.h
         Cell.h  SearchSolver.h BFS.h DFS.h AStar.h strinClass.h MyParallelServer.cpp MyParallelServer.h
-        MyClientHandler.cpp MyClientHandler.h BestFS.h AStar2.h MatrixClientHandler.h MatrixClientHandler.cpp
+        BestFS.h AStar2.h MatrixClientHandler.h MatrixClientHandler.cpp
         FileCacheManager.cpp FileCacheManager.h)

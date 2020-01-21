@@ -12,9 +12,25 @@ class MySerialServer: public Server {
 private:
     bool running = true;
 public:
+    /**
+     * open the serial server
+     * @param port
+     * @param c
+     */
     void open(int port, ClientHandler* c) override;
+    /**
+     * stop the serial server
+     */
     void stop() override;
+    /**
+     * start the serial server
+     * @param socketID
+     * @param clientHandler
+     */
     int start(int port, ClientHandler* c);
+
+    ~MySerialServer(){}
+
 };
 
 

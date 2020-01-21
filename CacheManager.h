@@ -10,10 +10,26 @@ using namespace std;
 
 template <typename  T> class CacheManager {
 public:
-    //check if problem exist and return it
+    /**
+     * check if problem exist and return boolean
+     * @param key
+     * @return
+     */
     virtual bool check(string key) = 0;
+    /**
+     * insert new value to cache
+     * @param key
+     * @param value
+     */
     virtual void insert(string key, T value) = 0;
+    /**
+     * get the value with the given key from cache
+     * @param key
+     * @return
+     */
     virtual T get(string key) = 0;
+    virtual ~CacheManager(){};
+
 };
 
 

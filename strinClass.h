@@ -22,7 +22,7 @@ public:
     void print() {
         cout<<"strinClass Object: "<<name<<endl;
     };
-    ~strinClass(){};
+    ~strinClass(){}
 
 };
 const string strinClass::class_name = "stringClass";

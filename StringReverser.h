@@ -16,6 +16,8 @@ public:
         reverse(p->begin(), p->end());
         return *p;
     }
+    ~StringReverser(){}
+
 };
 
 

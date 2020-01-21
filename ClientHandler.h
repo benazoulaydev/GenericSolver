@@ -10,7 +10,15 @@
 class ClientHandler {
 public:
     //TODO 1 param only
+    /**
+     * handle the client with given socket
+     * @param inputStream
+     * @param outputStream
+     */
     virtual void handleClient(int inputStream, int outputStream) = 0;
+    virtual ~ClientHandler() {
+
+    }
 };
 
 

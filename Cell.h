@@ -26,19 +26,37 @@ public:
     void printS()const{
         cout<<"("<<i<<","<<j<<")";
     }
+    /**
+     * operator overloading == with cell obj
+     * @param other
+     * @return if ==
+     */
     bool operator==(const Cell &other) const {
         return ((this->i == other.i) && (this->j == other.j));
     }
+    /**
+     *  operator overloading != with cell obj
+     * @param other
+     * @return if !=
+     */
     bool operator!=(const Cell &other) const{
         return !(*this == other);
     }
+    /**
+     * get the i axis
+     * @return i
+     */
     int getI() const {
         return i;
     }
-
+    /**
+     * get the j axis
+     * @return j
+     */
     int getJ() const {
         return j;
     }
+    ~Cell(){};
 };
 namespace std
 {
@@ -50,6 +68,7 @@ namespace std
             // Compute individual hash values for two data members and combine them using XOR and bit shifting
             return ((hash<int>()(k.getI()) ^ (hash<int>()(k.getJ()) << 1)) >> 1);
         }
+
     };
 }
 #endif //GENERICSOLVER_CELL_H

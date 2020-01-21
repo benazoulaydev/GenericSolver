@@ -12,8 +12,18 @@
 template <typename T>
 class ISearcher {
 public:
+    /**
+     * search given a searchable for the solution
+     * @param s
+     * @return the solution
+     */
     virtual Solution<T>* search(Searchable<T>* s)=0;
+    /**
+     * @return the number of node evaluated with algo
+     */
     virtual int getNumberOfNodeEvaluated()=0;
+    virtual ~ISearcher() {}
+
 };
 
 

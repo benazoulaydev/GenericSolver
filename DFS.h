@@ -15,6 +15,11 @@ template <typename T> class DFS  : public ISearcher<T>{
     unordered_map<T, pair<bool,State<T>*>> discovered;
     int evaluatedNodes;
 public:
+    /**
+     * the Dfs algo
+     * @param s
+     * @return
+     */
     Solution<T> *search(Searchable<T> *s) override {
         vector<State<T> *> vec;
         vec.push_back(s->getInitState());
@@ -40,9 +45,17 @@ public:
         }
         cout << "DFS failed" << endl;
     }
+    /**
+     * getNumberOfNodeEvaluated
+     * @return the number of node evaluated
+     */
     int getNumberOfNodeEvaluated() override {
         return evaluatedNodes;
     }
+    /**
+     * @param path
+     * @return the solution
+     */
     Solution<T> *toSol(vector<State<T>*> path){
         Solution<T>* solution = new Solution<T>();
         for(auto p:path){
@@ -50,6 +63,8 @@ public:
         }
         return solution;
     }
+    ~DFS(){};
+
 };
 
 

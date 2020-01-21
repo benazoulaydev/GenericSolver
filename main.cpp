@@ -21,7 +21,13 @@
 #include <chrono>
 using namespace std;
 using namespace std::chrono;
-int main() {
+int main(int argc, char* argv[]) {
+    char* port;
+    if (argc < 2) {
+        port = "5600";
+    } else {
+        port =argv[1];
+    }
 //    vector<int> m;
 //    m.push_back(1);m.push_back(2);m.push_back(3);
 //    m.push_back(1);m.push_back(2);m.push_back(3);
@@ -39,7 +45,7 @@ int main() {
 //    mss.open(5600, &ch);
     ClientHandler *testClientHandler = new MatrixClientHandler(&sr);
     MyParallelServer server;
-    server.open(5611, testClientHandler);
+    server.open(atoi(port), testClientHandler);
     server.stop();
     delete(testClientHandler);
 //    //std::this_thread::sleep_for(std::chrono::milliseconds(200000));
