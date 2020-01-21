@@ -26,7 +26,11 @@ int main() {
 //    m.push_back(1);m.push_back(2);m.push_back(3);
 //    m.push_back(1);m.push_back(2);m.push_back(3);
 //    m.push_back(1);m.push_back(2);m.push_back(1);
-//    string dd = SearchSolver(new BFS<Cell>()).solve(new MatrixMaze(*new Cell(0,0),*new Cell(2,2), &m, 3));
+//    BestFS<Cell> b{};
+//    Cell c1(0,0);
+//    Cell c2(2,2);
+//    MatrixMaze matrixMaze(c1,c2,&m,3);
+//    string dd = SearchSolver(&b).solve(&matrixMaze);
 //    cout<<dd<<endl;
 //
     StringReverser sr{};
@@ -38,7 +42,7 @@ int main() {
     server.open(5611, testClientHandler);
     server.stop();
     delete(testClientHandler);
-    //std::this_thread::sleep_for(std::chrono::milliseconds(200000));
+//    //std::this_thread::sleep_for(std::chrono::milliseconds(200000));
 
     return 0;
 }

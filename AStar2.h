@@ -76,7 +76,7 @@ public:
                     // This path to neighbor is better than any previous one. Record it!
                     cameFrom[neighborState] = current->getState();
                     gScore[neighborState] = tentative_gScore;
-                    fScore[neighborState] = gScore[neighborState] + h(*neighbor);
+                    fScore[neighborState] = 2*gScore[neighborState] + h(*neighbor);
                     if(openSet.find(neighborState) == openSet.end())
                         addToOpen(neighbor);
                 }
@@ -105,6 +105,7 @@ public:
             total_path->addStateFront(current);
             current = cameFrom[current];
         }
+        total_path->addStateFront(searchable->getInitState()->getState());
         return total_path;
     }
 };
