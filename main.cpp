@@ -23,8 +23,9 @@ using namespace std;
 using namespace std::chrono;
 int main(int argc, char* argv[]) {
     char* port;
+    string defPort = "5600";
     if (argc < 2) {
-        port = "5600";
+        port = const_cast<char *>(defPort.c_str());
     } else {
         port =argv[1];
     }
