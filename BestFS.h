@@ -77,12 +77,16 @@ Solution<T> *BestFS<T>::backTrace(State<T> *goalState, State<T> *init) {
         solution->addStateFront(tempState->getState());
         tempState = &closed.at(tempState->getCameFrom());
     }
+    solution->addStateFront(tempState->getState());
     return solution;
 }
 
 template<typename T>
 BestFS<T>::~BestFS() {
     for(auto i1=closed.begin();i1!=closed.end();i1++) {
+        delete &i1->second;
+    }
+    for(auto i1=openSet.begin();i1!=openSet.end();i1++) {
         delete &i1->second;
     }
     cout<<"hi"<<endl;
