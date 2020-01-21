@@ -153,7 +153,7 @@ public:
                 // read solution
                 while (file_obj >> line) {
                     solution += line;
-                    solution += " ,";
+                    solution += " ";
                 }
                 solution = solution.substr(0, solution.size()-2);
 
