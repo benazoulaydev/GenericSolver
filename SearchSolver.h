@@ -21,6 +21,10 @@ public:
         idAlgo = s->getIdAlgo();
         searcher = s;
     }
+    SearchSolver* clone(){
+        return new SearchSolver(searcher->clone());
+    }
+
     /**
      * search given a searchable for the solution
      * @param s

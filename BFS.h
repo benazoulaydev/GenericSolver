@@ -15,10 +15,19 @@ private:
     int idAlgo =5;
     queue<State<T>> Q;
     unordered_map<T, pair<bool,State<T>*>> discovered;
-    int evaluatedNodes;
+    int evaluatedNodes=0;
     bool fromStart = true;
     State<T>* initState;
 public:
+    /**
+     * clone function.
+     * @tparam T
+     * @return the clone
+     */
+    ISearcher<T> *clone() override {
+        return new BFS<T>{};
+    }
+
     void resetField(){
         discovered.clear();
         evaluatedNodes = 0;
