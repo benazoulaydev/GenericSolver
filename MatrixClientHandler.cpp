@@ -85,7 +85,8 @@ void MatrixClientHandler::handleClient(int socketFD, int outputStream) {
         Cell *goalCell = new Cell(goal_row[0], goal_row[1]);
 
         MatrixMaze *matrixMaze = new MatrixMaze(*initCell,*goalCell,&matrixLine, sizeMatrix);
-        finalSolution = srchSlvHlp->solve(matrixMaze);
+        auto solverClone = srchSlvHlp->clone();
+        finalSolution = solverClone->solve(matrixMaze);
         try {
             cm->insert(keyHashed, finalSolution);
         } catch  (const char * e) {

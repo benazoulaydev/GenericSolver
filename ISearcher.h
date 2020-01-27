@@ -24,6 +24,8 @@ public:
     virtual int getNumberOfNodeEvaluated()=0;
     virtual int getIdAlgo()=0;
     virtual void resetField()=0;
+    virtual ISearcher<T>* clone()=0;
+
     virtual ~ISearcher() {}
 
 };

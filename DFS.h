@@ -14,8 +14,17 @@ template <typename T> class DFS  : public ISearcher<T>{
     int idAlgo =6;
     stack<State<T>> S;
     unordered_map<T, pair<bool,State<T>*>> discovered;
-    int evaluatedNodes;
+    int evaluatedNodes=0;
 public:
+    /**
+ * clone function.
+ * @tparam T
+ * @return the clone
+ */
+    ISearcher<T> *clone() override {
+        return new DFS<T>{};
+    }
+
     void resetField(){
         discovered.clear();
         evaluatedNodes = 0;

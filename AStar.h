@@ -25,6 +25,15 @@ private:
     unordered_map<T, double> fScore;
 
 public:
+    /**
+     * clone function.
+     * @tparam T
+     * @return the clone
+     */
+    ISearcher<T> *clone() override {
+        return new AStar<T>{};
+    }
+
     void resetField(){
         evaluatedNodes = 0;
         costMap.clear();

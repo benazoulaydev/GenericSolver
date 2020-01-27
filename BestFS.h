@@ -14,6 +14,9 @@ template <typename T>
 class BestFS : public ISearcher<T>{
 private:
     int idAlgo = 3;
+public:
+private:
+
     multimap<double, State<T>&> costMap;
     unordered_map<T, State<T>&> openSet;
     unordered_map<T, State<T>&> closed;
@@ -59,13 +62,14 @@ public:
         return newTop;
     }
     Solution<T>* search(Searchable<T>* searchable) override;
-
     void resetField(){
         evaluatedNodes = 0;
         costMap.clear();
         openSet.clear();
         closed.clear();
     }
+
+    ISearcher<T> * clone() override;
     virtual ~BestFS();
 };
 
@@ -130,6 +134,15 @@ BestFS<T>::~BestFS() {
     for(auto i1=openSet.begin();i1!=openSet.end();i1++) {
         delete &i1->second;
     }
+}
+/**
+ * clone function.
+ * @tparam T
+ * @return the clone
+ */
+template<typename T>
+ISearcher<T>* BestFS<T>::clone() {
+    return new BestFS<T>{};
 }
 
 
