@@ -13,6 +13,7 @@
  * @param outputStream
  */
 void MatrixClientHandler::handleClient(int socketFD, int outputStream) {
+
     //TODO add CacheManager feature
     //CacheManager<strinClass> my_2nd_cache(5);
     string line, sol;
@@ -63,8 +64,9 @@ void MatrixClientHandler::handleClient(int socketFD, int outputStream) {
 
     }
     //create hash string from problem string to minimize the size file name
-    ISearcher<Cell>* s = new BestFS<Cell>();
-    std::string strId = std::to_string(s->getIdAlgo());
+
+
+    std::string strId = std::to_string(sHlp->getIdAlgo());
     auto hashed = hashKey(matrixStr + strId);
     string keyHashed = to_string(hashed);
     string finalSolution;
@@ -83,10 +85,11 @@ void MatrixClientHandler::handleClient(int socketFD, int outputStream) {
         Cell *goalCell = new Cell(goal_row[0], goal_row[1]);
 
         MatrixMaze *matrixMaze = new MatrixMaze(*initCell,*goalCell,&matrixLine, sizeMatrix);
-        finalSolution = SearchSolver(s).solve(matrixMaze);
+        finalSolution = srchSlvHlp->solve(matrixMaze);
         try {
             cm->insert(keyHashed, finalSolution);
         } catch  (const char * e) {
+            sHlp->resetField();
             cout << e << endl;
         }
     }
@@ -94,6 +97,7 @@ void MatrixClientHandler::handleClient(int socketFD, int outputStream) {
 
 
     int isSent = send(outputStream, finalSolution.c_str(), finalSolution.size(), 0);
+    sHlp->resetField();
     if (isSent == -1) {
         std::cout<<"Error sending message"<<std::endl;
     }

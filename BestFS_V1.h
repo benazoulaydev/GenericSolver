@@ -20,6 +20,11 @@ private:
     Solution<T> *backTrace(State<T>* goalState, State<T> *init);
     Searchable<T>* searchableI;
 public:
+    void resetField(){
+        evaluatedNodes = 0;
+        openSet.clear();
+        closed.clear();
+    }
     /**
      * id of algo for hash name
      * @return

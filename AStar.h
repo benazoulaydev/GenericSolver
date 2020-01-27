@@ -16,7 +16,7 @@ class AStar : public ISearcher<T> {
 private:
     int idAlgo = 1;
 
-    int evaluatedNodes;
+    int evaluatedNodes=0;
     Searchable<T>* searchable;
     multimap<double, State<T>&> costMap;
     unordered_map<T, State<T>&> openSet;
@@ -25,6 +25,14 @@ private:
     unordered_map<T, double> fScore;
 
 public:
+    void resetField(){
+        evaluatedNodes = 0;
+        costMap.clear();
+        openSet.clear();
+        cameFrom.clear();
+        gScore.clear();
+        fScore.clear();
+    }
     /**
      * id of algo for hash name
      * @return
@@ -107,6 +115,7 @@ public:
         }
         // Open set is empty but goal was never reached
         cout<<"A* Failed"<<endl;
+        return nullptr;
     }
     /**
      * current := the node in openSet having the lowest fScore[] value

@@ -50,6 +50,8 @@ public:
     int getIdAlgo() {
         return idAlgo;
     }
+
+
     ~SearchSolver(){}
 
 };

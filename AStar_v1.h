@@ -21,6 +21,13 @@ private:
     unordered_map<T, double> gScore;
     unordered_map<T, double> fScore;
 public:
+    void resetField(){
+        evaluatedNodes = 0;
+        openSet.clear();
+        cameFrom.clear();
+        gScore.clear();
+        fScore.clear();
+    }
     /**
      * id of algo for hash name
      * @return
