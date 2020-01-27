@@ -16,6 +16,13 @@ template <typename T> class DFS  : public ISearcher<T>{
     unordered_map<T, pair<bool,State<T>*>> discovered;
     int evaluatedNodes;
 public:
+    void resetField(){
+        discovered.clear();
+        evaluatedNodes = 0;
+        while(!S.empty()) {
+            S.pop();
+        }
+    }
     /**
      * id of algo for hash name
      * @return

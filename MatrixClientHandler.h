@@ -26,17 +26,29 @@ class MatrixClientHandler : public ClientHandler{
 private:
     Solver<std::string,std::string>* solver;
     CacheManager<std::string>* cm;
+
+    ISearcher<Cell>* sHlp;
+    SearchSolver* srchSlvHlp;
+
 public:
-    MatrixClientHandler(Solver<std::string, std::string> *pSolver){
-        solver = pSolver;
+    MatrixClientHandler(ISearcher<Cell>* s_t_y, SearchSolver* srchSlv_t_y){
+        sHlp = s_t_y;
+        srchSlvHlp = srchSlv_t_y;
         cm = new FileCacheManager<std::string>(5);
+
     }
+//    MatrixClientHandler(Solver<std::string, std::string> *pSolver){
+//        solver = pSolver;
+//        cm = new FileCacheManager<std::string>(5);
+//    }
     /**
     * handle client for matrix input by client
     * @param socketFD
     * @param outputStream
     */
     void handleClient(int socketFD, int outputStream) override;
+
+
     /**
      * create vector of a given string
      * @param line

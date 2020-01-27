@@ -19,6 +19,14 @@ private:
     bool fromStart = true;
     State<T>* initState;
 public:
+    void resetField(){
+        discovered.clear();
+        evaluatedNodes = 0;
+        fromStart = true;
+        while(!Q.empty()) {
+            Q.pop();
+        }
+    }
     /**
      * id of algo for hash name
      * @return

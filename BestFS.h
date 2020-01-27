@@ -60,6 +60,12 @@ public:
     }
     Solution<T>* search(Searchable<T>* searchable) override;
 
+    void resetField(){
+        evaluatedNodes = 0;
+        costMap.clear();
+        openSet.clear();
+        closed.clear();
+    }
     virtual ~BestFS();
 };
 
@@ -114,6 +120,7 @@ Solution<T> *BestFS<T>::backTrace(State<T> *goalState, State<T> *init) {
     solution->addStateFront(tempState->getState());
     return solution;
 }
+
 
 template<typename T>
 BestFS<T>::~BestFS() {

@@ -28,27 +28,14 @@ int main(int argc, char* argv[]) {
     } else {
         port =argv[1];
     }
-//    vector<int> m;
-//    m.push_back(1);m.push_back(2);m.push_back(3);
-//    m.push_back(1);m.push_back(2);m.push_back(3);
-//    m.push_back(1);m.push_back(2);m.push_back(1);
-//    BestFS<Cell> b{};
-//    Cell c1(0,0);
-//    Cell c2(2,2);
-//    MatrixMaze matrixMaze(c1,c2,&m,3);
-//    string dd = SearchSolver(&b).solve(&matrixMaze);
-//    cout<<dd<<endl;
-//
-    StringReverser sr{};
-    //MyParallelServer mss{};
-//    MyTestClientHandler ch{&sr};
-//    mss.open(5600, &ch);
-    ClientHandler *testClientHandler = new MatrixClientHandler(&sr);
+
+    ISearcher<Cell>* s = new BestFS<Cell>();
+    SearchSolver* srchSlv_t_y = new SearchSolver(s);
+    ClientHandler *testClientHandler = new MatrixClientHandler(s, srchSlv_t_y);
     MyParallelServer server;
     server.open(atoi(port), testClientHandler);
     server.stop();
     delete(testClientHandler);
-//    //std::this_thread::sleep_for(std::chrono::milliseconds(200000));
 
     return 0;
 }
